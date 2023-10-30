@@ -1,0 +1,11 @@
+Model Information:
+* title:	2
+* source:	https://sketchfab.com/3d-models/2-c0e85a501b1c43e896fd6add57e50233
+* author:	Sonic the Hedgehog Fan # 9,945,677 (https://sketchfab.com/sonicmaniafan994878)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "2" (https://sketchfab.com/3d-models/2-c0e85a501b1c43e896fd6add57e50233) by Sonic the Hedgehog Fan # 9,945,677 (https://sketchfab.com/sonicmaniafan994878) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
