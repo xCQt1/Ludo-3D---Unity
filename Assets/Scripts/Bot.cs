@@ -15,12 +15,12 @@ public class Bot : Player
             //BoxFields auf Figuren überprüfen, falls vorhanden die rausschicken und returnen
         }
         if (!NoPiecesMovable()) {
-            determineBestPieceToMove().MoveFields(gen.lastNumber);
+            DetermineBestPieceToMove().MoveFields(gen.lastNumber);
         }
         return null;
     }
 
-    private Piece determineBestPieceToMove() {
+    private Piece DetermineBestPieceToMove() {
         Piece bestPiece = null;
         return bestPiece;
     }

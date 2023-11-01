@@ -9,11 +9,20 @@ public class Piece : MouseClickable
     public Player player;
     private NumberGenerator gen;
     public int FieldsMoved {get; private set; } = 0;
-    public bool CanMove(int fields) => GameHandler.Instance.currentPlayer == player && NumberGenerator.Instance.lastNumber != 0 && ((currentField is not BoxField && (GetField(fields).IsFree || GetField(fields).GetCurrentPiece().player != this.player)) || (currentField is BoxField && fields == 6 && (player.spawnField.IsFree || player.spawnField.GetCurrentPiece().player != player)));
-    // bedeutet: Aktueller Spieler ist der Spieler dieser Figur UND letzter Wurf ist keine 0 UND (nicht auf BoxField UND (Feld ist frei ODER Figur auf dem Feld is nicht vom Player)) ODER (auf BoxField UND Würfel hat ne 6 gewürfelt)
-
     public float MoveAnimationDuration = .5f; // in millisecs
     public bool inAnimation {get; private set;}
+    
+    public bool CanMove(int fields) => GameHandler.Instance.currentPlayer == player &&      // der Spieler der Figur am Zug ist
+                                       NumberGenerator.Instance.lastNumber != 0 &&          // die letzte gewürfelte Nummer keine 0 ist
+                                       ((currentField is not BoxField && 
+                                            GetField(fields) is not null &&
+                                            (GetField(fields).IsFree || GetField(fields)?.GetCurrentPiece().player != this.player)) || 
+                                       (currentField is BoxField && fields == 6 && 
+                                            (player.spawnField.IsFree || player.spawnField.GetCurrentPiece().player != player)));
+    public bool CanCapture(int fields) => CanMove(fields) && !GetField(fields).IsFree;
+    // bedeutet: Kann sich um fields Felder bewegen und auf dem Zielfeld steht eine Figur
+    public bool CanClearStartField(int fields) => currentField is SpawnField && CanMove(fields);
+    public bool CanLeaveBox(int fields) => currentField is BoxField && CanMove(fields);
     
     // Start is called before the first frame update
     void Start()
@@ -58,6 +67,7 @@ public class Piece : MouseClickable
     }
 
     public bool MoveToField(Field field) {
+        if (field is null) return false;
         if (field.PlacePiece(this)) {
             Debug.Log($"{player.name} has moved a piece");
             currentField.RemoveCurrentPiece();
@@ -77,7 +87,8 @@ public class Piece : MouseClickable
     public Field GetField(int numberOfFields) {
         Field targetField = currentField;
         for (int i=0; i<numberOfFields; i++) {
-            targetField = targetField.nextField;
+            if (targetField is null) return null;
+            targetField = targetField.endField is null || targetField.endField.player != this.player ? targetField.nextField : targetField.endField;
         }
         return targetField;
     }
@@ -114,6 +125,6 @@ public class Piece : MouseClickable
     }
 
     protected override Color DetermineColor() {
-        return player != GameHandler.Instance.currentPlayer || gen.lastNumber == 0 ? Color.grey : CanMove(NumberGenerator.Instance.lastNumber) ? Color.green : Color.red;
+        return player != GameHandler.Instance.currentPlayer || gen.lastNumber == 0 ? Color.grey : CanMove(gen.lastNumber) ? Color.green : Color.red;
     }
 }

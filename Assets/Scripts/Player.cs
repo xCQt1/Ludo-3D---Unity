@@ -17,10 +17,12 @@ public class Player : MonoBehaviour
     [SerializeField] public Transform CamTransform;
     protected NumberGenerator gen;
     protected List<Piece> pieces = new();
-    public bool NoPiecesMovable() => pieces.All(piece => !piece.CanMove(gen.lastNumber));
-    public bool CanThrowDice() => (numberOfThrows < 1 || (NoPiecesMovable() && gen.lastNumber != 6 && numberOfThrows < 3)) && !hasMoved;
     private int numberOfThrows;
     public bool hasMoved = false;
+    public List<Piece> movablePieces = new();
+    
+    public bool NoPiecesMovable() => pieces.All(piece => !piece.CanMove(gen.lastNumber));
+    public bool CanThrowDice() => (numberOfThrows < 1 || (NoPiecesMovable() && gen.lastNumber != 6 && numberOfThrows < 3)) && !hasMoved;
     
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void DetermineMoveablePieces() {
+        if (gen.lastNumber == 0) return;
+        // Raussetzen
+        movablePieces = pieces.FindAll(piece => piece.CanLeaveBox(gen.lastNumber));
+        // Freimachen
+        movablePieces ??= pieces.FindAll(piece => piece.CanClearStartField(gen.lastNumber));
+        // Schlagen
+        movablePieces ??= pieces.FindAll(piece => piece.CanCapture(gen.lastNumber));
+        // andere Züge
+        movablePieces ??= pieces.FindAll(piece => piece.CanMove(gen.lastNumber));
+        
+        // if (movablePieces.Count == 0) Debug.LogError("No Pieces Moveable");
+        Debug.Log(movablePieces.Count);
+    }
+
     virtual public IEnumerator Turn() {
         // Variablen
         hasMoved = false;
@@ -47,13 +64,14 @@ public class Player : MonoBehaviour
         Debug.Log($"{this.name}'s turn");
         
         while(!hasMoved && !(numberOfThrows > 2 && NoPiecesMovable())) {
+            //DetermineMoveablePieces();
             yield return null;
         }
 
         yield return new WaitForSeconds(1);
+        movablePieces = null;
         Debug.Log($"{this.name}'s turn has ended");
         GameHandler.Instance.SwitchToNextPlayer();
-        
     }
 
     public void IncreaseDiceThrows() => numberOfThrows++;
