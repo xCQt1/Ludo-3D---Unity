@@ -19,12 +19,22 @@ public class GameHandler : MonoBehaviour
     
     void Start()
     {
+        StartGame();
+    }
+
+    public void StartGame() {
         Setup();
         SwitchToNextPlayer();
     }
 
+    public void ResetGame() {
+        foreach(Player player in players) {
+            player.Reset();
+        }
+    }
+
     private void Setup() {
-        currentPlayer = players[players.Count - 1];
+        currentPlayer = players[^1];
     }
 
     private bool HasPlayerWon(Player player) {
@@ -44,5 +54,6 @@ public class GameHandler : MonoBehaviour
 
     private void HandleGameOver(Player player) {
         Debug.Log($"Game Over! {player.name} hat gewonnen!");
+        Application.Quit();
     }
 }

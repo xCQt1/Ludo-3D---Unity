@@ -19,9 +19,10 @@ public class CameraController : MonoBehaviour
     }
 
     private IEnumerator Transition(Player player) {
-        while(inAnimation) {
-            yield return null;
+        while(inAnimation) {    // Wait for any ongoing animation to finish
+            yield return new WaitForSeconds(0.5f);
         }
+
         float timeElapsed = 0f;
         inAnimation = true;
 

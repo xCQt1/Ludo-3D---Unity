@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.Collections;
 using UnityEngine;
 
 public class Bot : Player
@@ -11,17 +13,30 @@ public class Bot : Player
     }
 
     override public IEnumerator Turn() {
-        if (gen.lastNumber == 6) {
-            //BoxFields auf Figuren überprüfen, falls vorhanden die rausschicken und returnen
+        while(CanThrowDice()) {
+            gen.GetNewNumber(this);
+            yield return null;
         }
+
         if (!NoPiecesMovable()) {
-            DetermineBestPieceToMove().MoveFields(gen.lastNumber);
+            DetermineBestPieceToMove().Move();
         }
-        return null;
+        
+        GameHandler.Instance.SwitchToNextPlayer();
     }
 
-    private Piece DetermineBestPieceToMove() {
-        Piece bestPiece = null;
+    private Piece DetermineBestPieceToMove() {  // Big-Brain des Bots
+        UpdateMoveablePieces();
+        Piece bestPiece = BestPieceToMove(moveablePieces);
         return bestPiece;
+    }
+
+    private Piece BestPieceToMove(List<Piece> pieces) {
+        if (pieces.All(piece => piece.IsInBox()) || pieces.Count == 1) {
+            return pieces[0];
+        } else {
+            // Denken
+            return null;
+        }
     }
 }

@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,12 +19,18 @@ public class Piece : MouseClickable
                                        ((currentField is not BoxField && 
                                             GetField(fields) is not null &&
                                             (GetField(fields).IsFree || GetField(fields)?.GetCurrentPiece().player != this.player)) || 
-                                       (currentField is BoxField && fields == 6 && 
+                                       (currentField is BoxField && 
+                                            fields == 6 && 
                                             (player.spawnField.IsFree || player.spawnField.GetCurrentPiece().player != player)));
+    
+    public bool AllowedToMove() => GameHandler.Instance.currentPlayer == player &&
+                                   NumberGenerator.Instance.lastNumber != 0 && 
+                                   player.moveablePieces.Contains(this);
     public bool CanCapture(int fields) => CanMove(fields) && !GetField(fields).IsFree;
-    // bedeutet: Kann sich um fields Felder bewegen und auf dem Zielfeld steht eine Figur
     public bool CanClearStartField(int fields) => currentField is SpawnField && CanMove(fields);
     public bool CanLeaveBox(int fields) => currentField is BoxField && CanMove(fields);
+    public bool CanEnterEndFields(int fields) => GetField(fields) is EndField;
+    public bool IsInBox() => currentField is BoxField;
     
     // Start is called before the first frame update
     void Start()
@@ -58,7 +66,7 @@ public class Piece : MouseClickable
     }
 
     public void Move() {
-        if (inAnimation || !CanMove(gen.lastNumber)) return;
+        if (inAnimation || !AllowedToMove()) return;
         if (currentField is BoxField) {
             MoveToField(player.spawnField);
         } else {
@@ -73,6 +81,8 @@ public class Piece : MouseClickable
             currentField.RemoveCurrentPiece();
             currentField = field;
             currentField.PlacePiece(this);
+            
+            player.HasMoved = true;
 
             NumberGenerator.Instance.StartAnimation(this);
             StartCoroutine(AnimatePieceMove(field));
@@ -101,7 +111,7 @@ public class Piece : MouseClickable
         inAnimation = true;
 
         while(NumberGenerator.Instance.inAnimation) {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.5f);
         }
 
         float timeElapsed = 0f;
@@ -114,9 +124,8 @@ public class Piece : MouseClickable
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-        
+
         inAnimation = false;
-        player.hasMoved = true;
         MovePieceToCurrentField();
     }
 
@@ -125,6 +134,6 @@ public class Piece : MouseClickable
     }
 
     protected override Color DetermineColor() {
-        return player != GameHandler.Instance.currentPlayer || gen.lastNumber == 0 ? Color.grey : CanMove(gen.lastNumber) ? Color.green : Color.red;
+        return player != GameHandler.Instance.currentPlayer || gen.lastNumber == 0 ? Color.grey : AllowedToMove() ? Color.green : Color.red;
     }
 }

@@ -15,14 +15,16 @@ public class Player : MonoBehaviour
     [SerializeField] public GameObject piecePrefab;
     [SerializeField] public Color color;
     [SerializeField] public Transform CamTransform;
+
     protected NumberGenerator gen;
     protected List<Piece> pieces = new();
-    private int numberOfThrows;
-    public bool hasMoved = false;
-    public List<Piece> movablePieces = new();
+    protected int numberOfThrows;
+    public bool HasMoved = false;
+    public bool HasThrownDice = false;
+    public List<Piece> moveablePieces = new();
     
     public bool NoPiecesMovable() => pieces.All(piece => !piece.CanMove(gen.lastNumber));
-    public bool CanThrowDice() => (numberOfThrows < 1 || (NoPiecesMovable() && gen.lastNumber != 6 && numberOfThrows < 3)) && !hasMoved;
+    public bool CanThrowDice() => (numberOfThrows < 1 || (NoPiecesMovable() && gen.lastNumber != 6 && numberOfThrows < 3)) && !HasMoved;
     
     // Start is called before the first frame update
     void Start()
@@ -41,37 +43,55 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void DetermineMoveablePieces() {
+    protected void UpdateMoveablePieces() {
         if (gen.lastNumber == 0) return;
+
+        if (HasMoved) {
+            moveablePieces = null;
+            return;
+        }
         // Raussetzen
-        movablePieces = pieces.FindAll(piece => piece.CanLeaveBox(gen.lastNumber));
+        moveablePieces = pieces.FindAll(piece => piece.CanLeaveBox(gen.lastNumber));
         // Freimachen
-        movablePieces ??= pieces.FindAll(piece => piece.CanClearStartField(gen.lastNumber));
+        if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.CanClearStartField(gen.lastNumber));
         // Schlagen
-        movablePieces ??= pieces.FindAll(piece => piece.CanCapture(gen.lastNumber));
+        if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.CanCapture(gen.lastNumber));
         // andere Züge
-        movablePieces ??= pieces.FindAll(piece => piece.CanMove(gen.lastNumber));
+        if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.CanMove(gen.lastNumber));
         
-        // if (movablePieces.Count == 0) Debug.LogError("No Pieces Moveable");
-        Debug.Log(movablePieces.Count);
+        Debug.Log(moveablePieces.Count);
     }
 
     virtual public IEnumerator Turn() {
         // Variablen
-        hasMoved = false;
+        HasMoved = false;
+        HasThrownDice = false;
         numberOfThrows = 0;
+        moveablePieces = new();
+
         CameraController.Instance.TransitionToPlayerPerspective(this);
         Debug.Log($"{this.name}'s turn");
-        
-        while(!hasMoved && !(numberOfThrows > 2 && NoPiecesMovable())) {
-            //DetermineMoveablePieces();
-            yield return null;
-        }
 
+        while(!HasThrownDice) {
+            yield return new WaitForSeconds(0.5f);
+        }
+        
+        while(!HasMoved && !(numberOfThrows > 2 && NoPiecesMovable())) {
+            UpdateMoveablePieces();
+            yield return new WaitForSeconds(0.5f);
+        }
+        
+        moveablePieces = new();
+        
         yield return new WaitForSeconds(1);
-        movablePieces = null;
         Debug.Log($"{this.name}'s turn has ended");
         GameHandler.Instance.SwitchToNextPlayer();
+    }
+
+    public void Reset() {
+        foreach (Piece piece in pieces) {
+            piece.Capture();
+        }
     }
 
     public void IncreaseDiceThrows() => numberOfThrows++;

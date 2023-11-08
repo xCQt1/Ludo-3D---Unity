@@ -26,12 +26,15 @@ public class NumberGenerator : MouseClickable
 
     public void GetNewNumber(Player player) {
         if (!player.CanThrowDice()) return;
+
         int result = new System.Random().Next(1,7);
         player.IncreaseDiceThrows();
         SpawnNumber(result);
         Debug.Log(result);
+
         lastNumber = result;
         lastPlayer = player;
+        player.HasThrownDice = true;
     }
 
     public void RedoThrow() {
