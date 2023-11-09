@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private float AnimationDuration;
-    public bool inAnimation {get; private set;} = false;
+    [HideInInspector] public bool inAnimation {get; private set;} = false;
 
     public static CameraController Instance {get; private set;}
 

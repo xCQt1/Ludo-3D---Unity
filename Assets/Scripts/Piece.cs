@@ -8,11 +8,11 @@ using UnityEngine;
 public class Piece : MouseClickable
 {
     protected Field currentField;
-    public Player player;
+    [SerializeField] public float MoveAnimationDuration = .5f; // in millisecs
+    [SerializeField] public Player player;
     private NumberGenerator gen;
-    public int FieldsMoved {get; private set; } = 0;
-    public float MoveAnimationDuration = .5f; // in millisecs
-    public bool inAnimation {get; private set;}
+    [HideInInspector] public int FieldsMoved {get; private set; } = 0;
+    [HideInInspector] public bool inAnimation {get; private set;}
     
     public bool CanMove(int fields) => GameHandler.Instance.currentPlayer == player &&      // der Spieler der Figur am Zug ist
                                        NumberGenerator.Instance.lastNumber != 0 &&          // die letzte gewürfelte Nummer keine 0 ist
@@ -98,7 +98,7 @@ public class Piece : MouseClickable
         Field targetField = currentField;
         for (int i=0; i<numberOfFields; i++) {
             if (targetField is null) return null;
-            targetField = targetField.endField is null || targetField.endField.player != this.player ? targetField.nextField : targetField.endField;
+            targetField = targetField is EndField ? null : targetField.endField is null || targetField.endField.player != this.player ? targetField.nextField : targetField.endField;
         }
         return targetField;
     }
@@ -134,6 +134,6 @@ public class Piece : MouseClickable
     }
 
     protected override Color DetermineColor() {
-        return player != GameHandler.Instance.currentPlayer || gen.lastNumber == 0 ? Color.grey : AllowedToMove() ? Color.green : Color.red;
+        return player != GameHandler.Instance.currentPlayer || gen.lastNumber == 0 || player.HasMoved ? Color.grey : AllowedToMove() ? Color.green : Color.red;
     }
 }

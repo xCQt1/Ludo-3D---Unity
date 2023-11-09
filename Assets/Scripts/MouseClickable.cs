@@ -5,7 +5,7 @@ using UnityEngine;
 abstract public class MouseClickable : MonoBehaviour
 {
     public Outline outline;
-    public Color outlineColor;
+    private Color outlineColor;
 
     protected void Awake() {
         outline = GetComponentInChildren<Outline>();

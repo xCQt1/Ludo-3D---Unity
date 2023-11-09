@@ -7,8 +7,8 @@ using System.Threading;
 public class GameHandler : MonoBehaviour
 {
     [SerializeField] public List<Player> players;
-    public Player currentPlayer;
-    public bool gameOver = false;
+    [HideInInspector] public Player currentPlayer;
+    [HideInInspector] public bool gameOver = false;
 
     public static GameHandler Instance {get; private set;}
 

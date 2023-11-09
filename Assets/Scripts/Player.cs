@@ -19,9 +19,9 @@ public class Player : MonoBehaviour
     protected NumberGenerator gen;
     protected List<Piece> pieces = new();
     protected int numberOfThrows;
-    public bool HasMoved = false;
-    public bool HasThrownDice = false;
-    public List<Piece> moveablePieces = new();
+    [HideInInspector] public bool HasMoved = false;
+    [HideInInspector] public bool HasThrownDice = false;
+    [HideInInspector] public List<Piece> moveablePieces = new();
     
     public bool NoPiecesMovable() => pieces.All(piece => !piece.CanMove(gen.lastNumber));
     public bool CanThrowDice() => (numberOfThrows < 1 || (NoPiecesMovable() && gen.lastNumber != 6 && numberOfThrows < 3)) && !HasMoved;
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
     }
 
     virtual public IEnumerator Turn() {
-        // Variablen
+        // Variablen resetten
         HasMoved = false;
         HasThrownDice = false;
         numberOfThrows = 0;
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
         }
         
         moveablePieces = new();
-        
+
         yield return new WaitForSeconds(1);
         Debug.Log($"{this.name}'s turn has ended");
         GameHandler.Instance.SwitchToNextPlayer();
