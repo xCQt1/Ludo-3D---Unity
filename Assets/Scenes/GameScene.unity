@@ -1396,6 +1396,41 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+--- !u!1 &433053657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 433053658}
+  m_Layer: 0
+  m_Name: Players
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &433053658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433053657}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1312675298}
+  - {fileID: 825701502}
+  - {fileID: 1937351354}
+  - {fileID: 1516626682}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &498787703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2162,7 +2197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 0}
-  outlineColor: {r: 0, g: 0, b: 0, a: 0}
   lastNumber: 4
   lastPlayer: {fileID: 0}
   numbers:
@@ -2424,8 +2458,10 @@ MonoBehaviour:
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 1, g: 0, b: 0, a: 0}
   CamTransform: {fileID: 854626581}
-  hasMoved: 0
-  movablePieces: []
+  isBot: 0
+  HasMoved: 0
+  HasThrownDice: 0
+  moveablePieces: []
 --- !u!4 &825701502
 Transform:
   m_ObjectHideFlags: 0
@@ -2434,13 +2470,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825701500}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 854626581}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 433053658}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &825904834
 PrefabInstance:
@@ -4459,8 +4495,10 @@ MonoBehaviour:
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 0.039215688, g: 0.039215688, b: 0.039215688, a: 0}
   CamTransform: {fileID: 1388275893}
-  hasMoved: 0
-  movablePieces: []
+  isBot: 0
+  HasMoved: 0
+  HasThrownDice: 0
+  moveablePieces: []
 --- !u!4 &1312675298
 Transform:
   m_ObjectHideFlags: 0
@@ -4469,13 +4507,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312675296}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1388275893}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 433053658}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1312883642 stripped
 MonoBehaviour:
@@ -5232,8 +5270,10 @@ MonoBehaviour:
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 1, g: 1, b: 0, a: 0}
   CamTransform: {fileID: 311376835}
-  hasMoved: 0
-  movablePieces: []
+  isBot: 0
+  HasMoved: 0
+  HasThrownDice: 0
+  moveablePieces: []
 --- !u!4 &1516626682
 Transform:
   m_ObjectHideFlags: 0
@@ -5242,13 +5282,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1516626680}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 311376835}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 433053658}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1001 &1540544664
 PrefabInstance:
@@ -6306,13 +6346,19 @@ MonoBehaviour:
   - {fileID: 829990026}
   - {fileID: 1424880806}
   - {fileID: 1898473804}
-  endFields: []
+  endFields:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spawnField: {fileID: 2084633691}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 0, g: 0.6, b: 0, a: 0}
   CamTransform: {fileID: 27052728}
-  hasMoved: 0
-  movablePieces: []
+  isBot: 0
+  HasMoved: 0
+  HasThrownDice: 0
+  moveablePieces: []
 --- !u!4 &1937351354
 Transform:
   m_ObjectHideFlags: 0
@@ -6321,13 +6367,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937351352}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 27052728}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 433053658}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1957024099
 PrefabInstance:
@@ -7606,10 +7652,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 1264266389}
-  - {fileID: 1312675298}
-  - {fileID: 825701502}
-  - {fileID: 1937351354}
-  - {fileID: 1516626682}
+  - {fileID: 433053658}
   - {fileID: 1135973450}
   - {fileID: 777597021}
   - {fileID: 700012268}

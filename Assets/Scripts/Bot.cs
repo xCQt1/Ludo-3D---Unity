@@ -7,9 +7,8 @@ using UnityEngine;
 public class Bot : Player
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        gen = NumberGenerator.Instance;   
+    new void Start() {
+        base.Start();  
     }
 
     override public IEnumerator Turn() {
@@ -32,11 +31,10 @@ public class Bot : Player
     }
 
     private Piece BestPieceToMove(List<Piece> pieces) {
-        if (pieces.All(piece => piece.IsInBox()) || pieces.Count == 1) {
-            return pieces[0];
-        } else {
-            // Denken
-            return null;
+        if (!pieces.All(piece => piece.IsInBox()) || pieces.Count > 1) {
+            pieces = pieces.FindAll(piece => piece.CanEnterEndFields(gen.lastNumber));  // Figuren die in EndFelder ziehen können
+            if (pieces.Count != 1) pieces.OrderBy(piece => piece.FieldsMoved).LastOrDefault();  // Figuren nach gezogenen Feldern sortieren
         }
+        return pieces[0];
     }
 }

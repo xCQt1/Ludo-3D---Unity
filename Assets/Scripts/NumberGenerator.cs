@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class NumberGenerator : MouseClickable
 {
-    [HideInInspector] public int lastNumber = 0;
-    private GameObject currentNumber;
-    [HideInInspector] public Player lastPlayer;
     [SerializeField] private List<GameObject> numbers;
     [SerializeField] private float AnimationDuration;
+    private GameObject currentNumber;
+    [HideInInspector] public Player lastPlayer;
+    [HideInInspector] public int lastNumber = 0;
+    [HideInInspector] public bool inAnimation {get; private set;}
 
     public static NumberGenerator Instance {get; private set;}
-    [HideInInspector] public bool inAnimation {get; private set;}
     
     
     private new void Awake() {

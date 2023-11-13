@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7395252932681636412}
   - component: {fileID: 5692149347595023920}
   m_Layer: 0
-  m_Name: New Prefab
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,5 +82,6 @@ MonoBehaviour:
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
   CamTransform: {fileID: 0}
-  hasMoved: 0
+  HasMoved: 0
+  HasThrownDice: 0
   moveablePieces: []

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
 using System.Threading;
+using System.Linq;
 
 public class GameHandler : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameHandler : MonoBehaviour
     [HideInInspector] public bool gameOver = false;
 
     public static GameHandler Instance {get; private set;}
+    private bool HasPlayerWon(Player player) => player.pieces.All(piece => piece.IsInBox());
 
     private void Awake() {
         Instance = this;
@@ -35,10 +37,6 @@ public class GameHandler : MonoBehaviour
 
     private void Setup() {
         currentPlayer = players[^1];
-    }
-
-    private bool HasPlayerWon(Player player) {
-        return false;
     }
 
     public void SwitchToNextPlayer() {

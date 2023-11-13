@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Field : MonoBehaviour
 {
+    [SerializeField] public Field nextField;
+    [SerializeField] public EndField endField;
     private Piece CurrentPiece;
     public bool IsFree => CurrentPiece == null;
-    public Field nextField;
-    public EndField endField;
 
     // Start is called before the first frame update
     void Start()

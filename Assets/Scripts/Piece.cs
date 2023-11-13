@@ -7,10 +7,10 @@ using UnityEngine;
 
 public class Piece : MouseClickable
 {
-    protected Field currentField;
     [SerializeField] public float MoveAnimationDuration = .5f; // in millisecs
     [SerializeField] public Player player;
     private NumberGenerator gen;
+    private Field currentField;
     [HideInInspector] public int FieldsMoved {get; private set; } = 0;
     [HideInInspector] public bool inAnimation {get; private set;}
     

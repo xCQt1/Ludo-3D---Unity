@@ -1,11 +1,7 @@
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using System.IO;
-using System.Threading;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -15,10 +11,11 @@ public class Player : MonoBehaviour
     [SerializeField] public GameObject piecePrefab;
     [SerializeField] public Color color;
     [SerializeField] public Transform CamTransform;
+    [SerializeField] public bool isBot;
 
     protected NumberGenerator gen;
-    protected List<Piece> pieces = new();
     protected int numberOfThrows;
+    [HideInInspector] public List<Piece> pieces {get; private set;} = new();
     [HideInInspector] public bool HasMoved = false;
     [HideInInspector] public bool HasThrownDice = false;
     [HideInInspector] public List<Piece> moveablePieces = new();
@@ -27,13 +24,13 @@ public class Player : MonoBehaviour
     public bool CanThrowDice() => (numberOfThrows < 1 || (NoPiecesMovable() && gen.lastNumber != 6 && numberOfThrows < 3)) && !HasMoved;
     
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         InstantiatePieces();
         gen = NumberGenerator.Instance;
     }
 
-    private void InstantiatePieces() {
+    protected void InstantiatePieces() {
         foreach (BoxField field in boxFields) {
             GameObject go = Instantiate(piecePrefab, position: transform.position, rotation: Quaternion.identity, parent: transform);
             Piece piece = go.GetComponent<Piece>();
