@@ -4449,6 +4449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd3956cfebe09547a224d4c58cb9047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VerboseLogging: 1
   players:
   - {fileID: 1312675297}
   - {fileID: 1516626681}

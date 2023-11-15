@@ -70,15 +70,16 @@ public class Piece : MouseClickable
         if (inAnimation || !AllowedToMove()) return;
         if (currentField is BoxField) {
             MoveToField(player.spawnField);
+            Debug.Log($"{player.name} has moved {this.name} to his spawn field");
         } else {
             MoveFields(gen.lastNumber);
+            Debug.Log($"{player.name} has moved {this.name} for {gen.lastNumber} fields");
         }
     }
 
     public bool MoveToField(Field field) {
         if (field is null) return false;
         if (field.PlacePiece(this)) {
-            Debug.Log($"{player.name} has moved a piece");
             currentField.RemoveCurrentPiece();
             currentField = field;
             currentField.PlacePiece(this);

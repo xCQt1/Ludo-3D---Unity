@@ -117,9 +117,13 @@ public class Player : MonoBehaviour
     private Piece BestPieceToMove(List<Piece> pieces) {
         List<Piece> temp = pieces;
         if (pieces.Count != 1) {
-            
+            temp = pieces.FindAll(piece => piece.GetField(gen.lastNumber) == endFields[^1]);
+            if (temp.Count != 1) temp = pieces; else goto x;
 
+            temp = pieces.FindAll(piece => piece.CanEnterEndFields(gen.lastNumber));
+            if (temp.Count != 1) temp = pieces; else goto x;
         }
+        x:
         return temp[0];
     }
 

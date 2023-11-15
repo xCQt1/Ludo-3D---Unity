@@ -7,6 +7,7 @@ using System.Linq;
 
 public class GameHandler : MonoBehaviour
 {
+    [SerializeField] public bool VerboseLogging = true;
     [SerializeField] public List<Player> players;
     [HideInInspector] public Player currentPlayer;
     [HideInInspector] public bool gameOver = false;
