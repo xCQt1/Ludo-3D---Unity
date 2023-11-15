@@ -31,6 +31,7 @@ public class Piece : MouseClickable
     public bool CanLeaveBox(int fields) => currentField is BoxField && CanMove(fields);
     public bool CanEnterEndFields(int fields) => GetField(fields) is EndField;
     public bool IsInBox() => currentField is BoxField;
+    public bool IsInEndFields() => currentField is EndField;
     
     // Start is called before the first frame update
     void Start()
@@ -95,9 +96,9 @@ public class Piece : MouseClickable
     }
 
     public Field GetField(int numberOfFields) {
-        Field targetField = currentField;
-        for (int i=0; i<numberOfFields; i++) {
-            if (targetField is null) return null;
+        Field targetField = currentField.nextField;
+        for (int i=0; i<numberOfFields-1; i++) {
+            if (targetField is null || targetField is EndField && !targetField.IsFree) return null;
             targetField = targetField is EndField ? null : targetField.endField is null || targetField.endField.player != this.player ? targetField.nextField : targetField.endField;
         }
         return targetField;
@@ -130,10 +131,10 @@ public class Piece : MouseClickable
     }
 
     public override void OnClick() {
-        Move();
+        if (!GameHandler.Instance.currentPlayer.isBot) Move();
     }
 
     protected override Color DetermineColor() {
-        return player != GameHandler.Instance.currentPlayer || gen.lastNumber == 0 || player.HasMoved ? Color.grey : AllowedToMove() ? Color.green : Color.red;
+        return player != GameHandler.Instance.currentPlayer || GameHandler.Instance.currentPlayer.isBot || gen.lastNumber == 0 || player.HasMoved ? Color.grey : AllowedToMove() ? Color.green : Color.red;
     }
 }

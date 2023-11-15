@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class NumberGenerator : MouseClickable
 {
@@ -28,13 +29,15 @@ public class NumberGenerator : MouseClickable
         if (!player.CanThrowDice()) return;
 
         int result = new System.Random().Next(1,7);
-        player.IncreaseDiceThrows();
-        SpawnNumber(result);
-        Debug.Log(result);
-
+        
         lastNumber = result;
         lastPlayer = player;
+
+        player.IncreaseDiceThrows();
         player.HasThrownDice = true;
+
+        SpawnNumber(result);
+        Debug.Log($"{lastPlayer.name} has thrown a {result}");
     }
 
     public void RedoThrow() {
@@ -48,14 +51,16 @@ public class NumberGenerator : MouseClickable
         }
         currentNumber = Instantiate(numbers[number-1], transform, true);
         currentNumber.transform.position = transform.position + Vector3.up * 1;
+        currentNumber.GetComponentInChildren<Renderer>().material.color = lastPlayer.color;
     }
 
     private void DestroyNumber() {
         Destroy(currentNumber);
+        currentNumber = null;
     }
 
     public void StartAnimation(Piece piece) {
-        StartCoroutine(AnimateNumberFly(piece));
+        //StartCoroutine(AnimateNumberFly(piece));
     }
 
     private IEnumerator AnimateNumberFly(Piece piece) {
@@ -82,10 +87,10 @@ public class NumberGenerator : MouseClickable
     }
 
     public override void OnClick() {
-        GetNewNumber(GameHandler.Instance.currentPlayer);
+        if (!GameHandler.Instance.currentPlayer.isBot) GetNewNumber(GameHandler.Instance.currentPlayer);
     }
 
     protected override Color DetermineColor() {
-        return GameHandler.Instance.currentPlayer is Bot || !GameHandler.Instance.currentPlayer.CanThrowDice()? Color.grey : Color.green;
+        return GameHandler.Instance.currentPlayer.isBot || !GameHandler.Instance.currentPlayer.CanThrowDice()? Color.grey : Color.green;
     }
 }

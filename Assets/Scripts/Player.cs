@@ -2,6 +2,8 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
+using System.ComponentModel;
 
 public class Player : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool HasThrownDice = false;
     [HideInInspector] public List<Piece> moveablePieces = new();
     
-    public bool NoPiecesMovable() => pieces.All(piece => !piece.CanMove(gen.lastNumber));
+    public bool NoPiecesMovable() => moveablePieces.Count == 0;
     public bool CanThrowDice() => (numberOfThrows < 1 || (NoPiecesMovable() && gen.lastNumber != 6 && numberOfThrows < 3)) && !HasMoved;
     
     // Start is called before the first frame update
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
         if (gen.lastNumber == 0) return;
 
         if (HasMoved) {
-            moveablePieces = null;
+            moveablePieces = new();
             return;
         }
         // Raussetzen
@@ -55,40 +57,83 @@ public class Player : MonoBehaviour
         if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.CanCapture(gen.lastNumber));
         // andere Züge
         if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.CanMove(gen.lastNumber));
-        
-        Debug.Log(moveablePieces.Count);
     }
 
-    virtual public IEnumerator Turn() {
-        // Variablen resetten
-        HasMoved = false;
-        HasThrownDice = false;
-        numberOfThrows = 0;
-        moveablePieces = new();
+    public void StartTurn() {
+        if (isBot) StartCoroutine(BotTurn());
+        else StartCoroutine(Turn());
+    }
 
+    private IEnumerator Turn() {
         CameraController.Instance.TransitionToPlayerPerspective(this);
+        ResetTurnVariables();
         Debug.Log($"{this.name}'s turn");
 
         while(!HasThrownDice) {
-            yield return new WaitForSeconds(0.5f);
+            yield return null;
         }
         
         while(!HasMoved && !(numberOfThrows > 2 && NoPiecesMovable())) {
             UpdateMoveablePieces();
-            yield return new WaitForSeconds(0.5f);
+            yield return null;
         }
-        
-        moveablePieces = new();
+        UpdateMoveablePieces();
 
         yield return new WaitForSeconds(1);
         Debug.Log($"{this.name}'s turn has ended");
+        ResetTurnVariables();
         GameHandler.Instance.SwitchToNextPlayer();
+    }
+
+    private IEnumerator BotTurn() {
+        ResetTurnVariables();
+        yield return new WaitForSeconds(2.0f);
+        while(CanThrowDice()) {
+            gen.GetNewNumber(this);
+
+            UpdateMoveablePieces();
+            yield return new WaitForSeconds(1.0f);
+        }
+
+        yield return new WaitForSeconds(1);
+
+        if (!NoPiecesMovable()) {
+            DetermineBestPieceToMove().Move();
+            Debug.Log("Moved Piece");
+            yield return new WaitForSeconds(2.0f);
+        }
+        
+        ResetTurnVariables();
+        GameHandler.Instance.SwitchToNextPlayer();
+    }
+
+    private Piece DetermineBestPieceToMove() {  // Big-Brain des Bots
+        UpdateMoveablePieces();
+        if (moveablePieces.Count == 0) return null;
+        Piece bestPiece = BestPieceToMove(moveablePieces);
+        return bestPiece;
+    }
+
+    private Piece BestPieceToMove(List<Piece> pieces) {
+        List<Piece> temp = pieces;
+        if (pieces.Count != 1) {
+            
+
+        }
+        return temp[0];
     }
 
     public void Reset() {
         foreach (Piece piece in pieces) {
             piece.Capture();
         }
+    }
+
+    private void ResetTurnVariables() {
+        HasMoved = false;
+        HasThrownDice = false;
+        numberOfThrows = 0;
+        moveablePieces = new();
     }
 
     public void IncreaseDiceThrows() => numberOfThrows++;

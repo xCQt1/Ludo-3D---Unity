@@ -12,7 +12,7 @@ public class GameHandler : MonoBehaviour
     [HideInInspector] public bool gameOver = false;
 
     public static GameHandler Instance {get; private set;}
-    private bool HasPlayerWon(Player player) => player.pieces.All(piece => piece.IsInBox());
+    private bool HasPlayerWon(Player player) => player.pieces.All(piece => piece.IsInEndFields());
 
     private void Awake() {
         Instance = this;
@@ -46,7 +46,7 @@ public class GameHandler : MonoBehaviour
 
         // next player
         currentPlayer = players[(players.IndexOf(currentPlayer) + 1) % 4];
-        StartCoroutine(currentPlayer.Turn());
+        currentPlayer.StartTurn();
 
     }
 

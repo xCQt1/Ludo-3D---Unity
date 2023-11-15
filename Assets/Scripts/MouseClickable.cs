@@ -9,8 +9,8 @@ abstract public class MouseClickable : MonoBehaviour
 
     protected void Awake() {
         outline = GetComponentInChildren<Outline>();
-        outline.enabled = false;
         if (outline is null) Debug.LogError("Outline ist null");
+        outline.enabled = false;
     }
 
     private void Update() {

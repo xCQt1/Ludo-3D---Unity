@@ -2197,8 +2197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 0}
-  lastNumber: 4
-  lastPlayer: {fileID: 0}
   numbers:
   - {fileID: 5179077755779999032, guid: 0f78bd2e62549e748824550781c2cb39, type: 3}
   - {fileID: 7840023272340697602, guid: 592b99a2a09445349abac3d58b9c2ca3, type: 3}
@@ -2207,6 +2205,8 @@ MonoBehaviour:
   - {fileID: 1764662480420483353, guid: e3a29dd8854413c4a9abd6daaa331735, type: 3}
   - {fileID: 2152157981570020556, guid: 597e1fc5aa861d64785e62a4e5b5ad3e, type: 3}
   AnimationDuration: 0.5
+  lastPlayer: {fileID: 0}
+  lastNumber: 4
 --- !u!135 &777597023
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2453,12 +2453,16 @@ MonoBehaviour:
   - {fileID: 943470432}
   - {fileID: 1957024101}
   - {fileID: 1759673420}
-  endFields: []
+  endFields:
+  - {fileID: 1254539626}
+  - {fileID: 804940688}
+  - {fileID: 1540544666}
+  - {fileID: 1980758895}
   spawnField: {fileID: 1948236887083078505}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 1, g: 0, b: 0, a: 0}
   CamTransform: {fileID: 854626581}
-  isBot: 0
+  isBot: 1
   HasMoved: 0
   HasThrownDice: 0
   moveablePieces: []
@@ -4487,10 +4491,10 @@ MonoBehaviour:
   - {fileID: 766871333}
   - {fileID: 1007118026}
   endFields:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1119592196}
+  - {fileID: 1118127847}
+  - {fileID: 825904836}
+  - {fileID: 1808708627}
   spawnField: {fileID: 870323416}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 0.039215688, g: 0.039215688, b: 0.039215688, a: 0}
@@ -5265,12 +5269,16 @@ MonoBehaviour:
   - {fileID: 1566851642}
   - {fileID: 766670337}
   - {fileID: 745296499}
-  endFields: []
+  endFields:
+  - {fileID: 2865665235339653368}
+  - {fileID: 1891547570}
+  - {fileID: 227488861}
+  - {fileID: 1020656954}
   spawnField: {fileID: 87317332}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 1, g: 1, b: 0, a: 0}
   CamTransform: {fileID: 311376835}
-  isBot: 0
+  isBot: 1
   HasMoved: 0
   HasThrownDice: 0
   moveablePieces: []
@@ -6347,15 +6355,15 @@ MonoBehaviour:
   - {fileID: 1424880806}
   - {fileID: 1898473804}
   endFields:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1435953315}
+  - {fileID: 1386634280}
+  - {fileID: 2103293388}
+  - {fileID: 734523175}
   spawnField: {fileID: 2084633691}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 0, g: 0.6, b: 0, a: 0}
   CamTransform: {fileID: 27052728}
-  isBot: 0
+  isBot: 1
   HasMoved: 0
   HasThrownDice: 0
   moveablePieces: []
