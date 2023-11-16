@@ -2,11 +2,11 @@
 
 This is a 3D game of the popular boardgame Ludo (or Mensch ärgere dich nicht, as called in Germany), made for a school project.
 
-This project aims to provide a simple, enjoyable experience with a simple, mouse-based UI and a (maybe at some point) good looking environment, all while keeping the nostalgic and original aesthetic of the original game.
+This project aims to provide a simple, enjoyable experience with a intuitive, mouse-based UI and a (maybe at some point) good looking environment, all while keeping the nostalgic and aesthetic of the original game.
 
-Specific features as of Version 0.3 are:
+Specific features as of Version 0.3 (pre-release) are:
 - fully functional game with all rules implemented
-- a minimal but intuitive UX
+- a minimal but intuitive way to interact with the game
 - basic animations
 - bots, you as a player can play with
 
