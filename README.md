@@ -8,6 +8,6 @@ Specific features as of Version 0.3 (pre-release) are:
 - fully functional game with all rules implemented
 - a minimal but intuitive way to interact with the game
 - basic animations
-- bots, you as a player can play with
+- bots, you as a player can play against
 
 Some additional features, that per se aren't necessary but still would provide a better UX, like menus, some toasts to provide some feedback to the player, additional animations and similar are to be implemented soon.
