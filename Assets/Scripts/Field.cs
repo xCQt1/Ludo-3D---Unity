@@ -27,6 +27,7 @@ public class Field : MonoBehaviour
         if (IsFree){
              CurrentPiece = piece;
         } else if (CurrentPiece.player != piece.player){
+            Debug.Log($"{piece.player} has captured a piece from {CurrentPiece.player}");
             CurrentPiece.Capture();
             CurrentPiece = piece;
         } else {

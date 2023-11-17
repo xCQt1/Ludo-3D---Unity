@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
     private IEnumerator Turn() {
         CameraController.Instance.TransitionToPlayerPerspective(this);
         ResetTurnVariables();
-        Debug.Log($"{this.name}'s turn");
+        Debug.Log($"{this.name}'s turn has begun");
 
         while(!HasThrownDice) {
             yield return null;

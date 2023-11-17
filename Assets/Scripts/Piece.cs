@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Piece : MouseClickable
 {
-    [SerializeField] public float MoveAnimationDuration = .5f; // in millisecs
+    [SerializeField] public float MoveAnimationDuration = .5f;
     [SerializeField] public Player player;
     private NumberGenerator gen;
     private Field currentField;
@@ -27,7 +27,7 @@ public class Piece : MouseClickable
                                    NumberGenerator.Instance.lastNumber != 0 && 
                                    player.moveablePieces.Contains(this);
     public bool CanCapture(int fields) => CanMove(fields) && !GetField(fields).IsFree && !GetField(fields).GetCurrentPiece().player == player;
-    public bool CanClearStartField(int fields) => currentField is SpawnField && CanMove(fields);
+    public bool CanClearStartField(int fields) => currentField == player.spawnField && CanMove(fields);
     public bool CanLeaveBox(int fields) => currentField is BoxField && CanMove(fields);
     public bool CanEnterEndFields(int fields) => GetField(fields) is EndField;
     public bool IsInBox() => currentField is BoxField;
@@ -51,7 +51,7 @@ public class Piece : MouseClickable
         MovePieceToCurrentField();
     }
 
-    protected void MovePieceToCurrentField() {
+    private void MovePieceToCurrentField() {
         transform.position = currentField.transform.position;
     }
 
@@ -100,8 +100,8 @@ public class Piece : MouseClickable
     public Field GetField(int numberOfFields) {
         Field targetField = currentField.nextField;
         for (int i=0; i<numberOfFields-1; i++) {
-            if (targetField is null || targetField is EndField && !targetField.IsFree) return null;
-            targetField = targetField is EndField ? null : targetField.endField is null || targetField.endField.player != this.player ? targetField.nextField : targetField.endField;
+            if (targetField is null || (targetField is EndField && !targetField.IsFree)) return null;
+            targetField = targetField.endField is null || targetField?.endField.player != player ? targetField.nextField : targetField.endField;
         }
         return targetField;
     }
