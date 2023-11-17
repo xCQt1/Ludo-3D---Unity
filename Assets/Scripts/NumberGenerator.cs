@@ -33,6 +33,7 @@ public class NumberGenerator : MouseClickable
         lastNumber = result;
         lastPlayer = player;
 
+        player.UpdateMoveablePieces();
         player.IncreaseDiceThrows();
         player.HasThrownDice = true;
 

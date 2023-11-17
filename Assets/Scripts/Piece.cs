@@ -18,15 +18,15 @@ public class Piece : MouseClickable
                                        NumberGenerator.Instance.lastNumber != 0 &&          // die letzte gewürfelte Nummer keine 0 ist
                                        ((currentField is not BoxField && 
                                             GetField(fields) is not null &&
-                                            (GetField(fields).IsFree || GetField(fields)?.GetCurrentPiece().player != this.player)) || 
-                                       (currentField is BoxField && 
+                                            (GetField(fields).IsFree || GetField(fields).GetCurrentPiece().player != player)) || 
+                                        (currentField is BoxField && 
                                             fields == 6 && 
                                             (player.spawnField.IsFree || player.spawnField.GetCurrentPiece().player != player)));
     
     public bool AllowedToMove() => GameHandler.Instance.currentPlayer == player &&
                                    NumberGenerator.Instance.lastNumber != 0 && 
                                    player.moveablePieces.Contains(this);
-    public bool CanCapture(int fields) => CanMove(fields) && !GetField(fields).IsFree;
+    public bool CanCapture(int fields) => CanMove(fields) && !GetField(fields).IsFree && !GetField(fields).GetCurrentPiece().player == player;
     public bool CanClearStartField(int fields) => currentField is SpawnField && CanMove(fields);
     public bool CanLeaveBox(int fields) => currentField is BoxField && CanMove(fields);
     public bool CanEnterEndFields(int fields) => GetField(fields) is EndField;
@@ -75,6 +75,7 @@ public class Piece : MouseClickable
             MoveFields(gen.lastNumber);
             Debug.Log($"{player.name} has moved {this.name} for {gen.lastNumber} fields");
         }
+        gen.Reset();
     }
 
     public bool MoveToField(Field field) {

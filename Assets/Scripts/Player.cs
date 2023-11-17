@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    protected void UpdateMoveablePieces() {
+    public void UpdateMoveablePieces() {
         if (gen.lastNumber == 0) return;
 
         if (HasMoved) {
@@ -77,7 +77,6 @@ public class Player : MonoBehaviour
             UpdateMoveablePieces();
             yield return null;
         }
-        UpdateMoveablePieces();
 
         yield return new WaitForSeconds(1);
         Debug.Log($"{this.name}'s turn has ended");
