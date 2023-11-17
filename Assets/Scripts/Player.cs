@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] public List<EndField> endFields;
     [SerializeField] public SpawnField spawnField;
     [SerializeField] public GameObject piecePrefab;
-    [SerializeField] public Color color;
+    [SerializeField] public Material PlayerMaterial;
     [SerializeField] public Transform CamTransform;
     [SerializeField] public bool isBot;
 
@@ -87,6 +87,7 @@ public class Player : MonoBehaviour
     private IEnumerator BotTurn() {
         ResetTurnVariables();
         yield return new WaitForSeconds(2.0f);
+
         while(CanThrowDice()) {
             gen.GetNewNumber(this);
 
@@ -98,7 +99,6 @@ public class Player : MonoBehaviour
 
         if (!NoPiecesMovable()) {
             DetermineBestPieceToMove().Move();
-            Debug.Log("Moved Piece");
             yield return new WaitForSeconds(2.0f);
         }
         

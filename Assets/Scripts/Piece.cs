@@ -36,13 +36,13 @@ public class Piece : MouseClickable
     // Start is called before the first frame update
     void Start()
     {
-        SetColor();
+        SetMaterial();
         MovePieceToCurrentField();
         gen = NumberGenerator.Instance;
     }
 
-    private void SetColor() {
-        GetComponentInChildren<Renderer>().material.color = player.color;
+    private void SetMaterial() {
+        GetComponentInChildren<Renderer>().material = player.PlayerMaterial;
     }
 
     public void SetStartField(BoxField field) {

@@ -52,7 +52,7 @@ public class NumberGenerator : MouseClickable
         }
         currentNumber = Instantiate(numbers[number-1], transform, true);
         currentNumber.transform.position = transform.position + Vector3.up * 1;
-        currentNumber.GetComponentInChildren<Renderer>().material.color = lastPlayer.color;
+        currentNumber.GetComponentInChildren<Renderer>().material = lastPlayer.PlayerMaterial;
     }
 
     private void DestroyNumber() {

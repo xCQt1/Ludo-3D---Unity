@@ -7,7 +7,6 @@ using System.Linq;
 
 public class GameHandler : MonoBehaviour
 {
-    [SerializeField] public bool VerboseLogging = true;
     [SerializeField] private float SpotlightMoveDuration = 0.75f;
     [SerializeField] private GameObject spotlight;
     [SerializeField] public List<Player> players;
@@ -73,6 +72,7 @@ public class GameHandler : MonoBehaviour
         while(timeElapsed < SpotlightMoveDuration) {
             spotlight.transform.position = Vector3.Lerp(startPosition, targetPosition, timeElapsed/SpotlightMoveDuration);
             Physics.SyncTransforms();
+            timeElapsed += Time.deltaTime;
             yield return null;
         }
 

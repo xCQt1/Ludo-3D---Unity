@@ -2556,6 +2556,7 @@ MonoBehaviour:
   spawnField: {fileID: 1948236887083078505}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 1, g: 0, b: 0, a: 0}
+  PlayerMaterial: {fileID: 2100000, guid: 120128b3b396253409f3349148f9754f, type: 2}
   CamTransform: {fileID: 854626581}
   isBot: 1
   HasMoved: 0
@@ -4597,6 +4598,7 @@ MonoBehaviour:
   spawnField: {fileID: 870323416}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 0.039215688, g: 0.039215688, b: 0.039215688, a: 0}
+  PlayerMaterial: {fileID: 2100000, guid: 79ae0c946dd85af4ca611fa6d15f4b96, type: 2}
   CamTransform: {fileID: 1388275893}
   isBot: 0
   HasMoved: 0
@@ -5376,6 +5378,7 @@ MonoBehaviour:
   spawnField: {fileID: 87317332}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 1, g: 1, b: 0, a: 0}
+  PlayerMaterial: {fileID: 2100000, guid: 805a75ce0463e834bb02a977a25d277d, type: 2}
   CamTransform: {fileID: 311376835}
   isBot: 1
   HasMoved: 0
@@ -6461,6 +6464,7 @@ MonoBehaviour:
   spawnField: {fileID: 2084633691}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   color: {r: 0, g: 0.6, b: 0, a: 0}
+  PlayerMaterial: {fileID: 2100000, guid: dcb8a00ff4d660b49a76ba7f8c16deba, type: 2}
   CamTransform: {fileID: 27052728}
   isBot: 1
   HasMoved: 0
