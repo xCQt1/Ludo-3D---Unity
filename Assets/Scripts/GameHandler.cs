@@ -15,7 +15,7 @@ public class GameHandler : MonoBehaviour
     [HideInInspector] public bool inAnimation = false;
 
     public static GameHandler Instance {get; private set;}
-    private bool HasPlayerWon(Player player) => player.pieces.All(piece => piece.IsInEndFields());
+    private bool HasPlayerWon(Player player) => player.pieces.All(piece => piece.Checks.IsInEndFields());
 
     private void Awake() {
         Instance = this;

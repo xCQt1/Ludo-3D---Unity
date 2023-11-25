@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     
     public bool NoPiecesMovable() => moveablePieces.Count == 0;
     public bool CanThrowDice() => (numberOfThrows < 1 || (NoPiecesMovable() && gen.lastNumber != 6 && numberOfThrows < 3)) && !HasMoved;
+    public EndField GetHighestFreeEndField() => endFields.FirstOrDefault(field => field.IsFree);
     
     // Start is called before the first frame update
     protected void Start()
@@ -50,13 +51,13 @@ public class Player : MonoBehaviour
             return;
         }
         // Raussetzen
-        moveablePieces = pieces.FindAll(piece => piece.CanLeaveBox(gen.lastNumber));
+        moveablePieces = pieces.FindAll(piece => piece.Checks.CanLeaveBox(gen.lastNumber));
         // Freimachen
-        if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.CanClearStartField(gen.lastNumber));
+        if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.Checks.CanClearStartField(gen.lastNumber));
         // Schlagen
-        if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.CanCapture(gen.lastNumber));
+        if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.Checks.CanCapture(gen.lastNumber));
         // andere Züge
-        if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.CanMove(gen.lastNumber));
+        if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.Checks.CanMove(gen.lastNumber));
     }
 
     public void StartTurn() {
@@ -116,12 +117,13 @@ public class Player : MonoBehaviour
     private Piece BestPieceToMove(List<Piece> pieces) {
         List<Piece> temp = pieces;
         if (pieces.Count != 1) {
-            temp = pieces.FindAll(piece => piece.GetField(gen.lastNumber) == endFields[^1]);
+            temp = pieces.FindAll(piece => piece.Checks.CanEnterEndFields(gen.lastNumber));
             if (temp.Count != 1) temp = pieces; else goto x;
 
-            temp = pieces.FindAll(piece => piece.CanEnterEndFields(gen.lastNumber));
+            temp = pieces.FindAll(piece => piece.Checks.CanAdvanceInEndFields(gen.lastNumber));
             if (temp.Count != 1) temp = pieces; else goto x;
         }
+
         x:
         return temp[0];
     }

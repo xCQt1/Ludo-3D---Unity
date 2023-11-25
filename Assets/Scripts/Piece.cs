@@ -2,38 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Piece : MouseClickable
 {
-    [SerializeField] public float MoveAnimationDuration = .5f;
+    [SerializeField] public static float MoveAnimationDuration = .5f;
     [SerializeField] public Player player;
     private NumberGenerator gen;
     private Field currentField;
     [HideInInspector] public int FieldsMoved {get; private set; } = 0;
     [HideInInspector] public bool inAnimation {get; private set;}
+    public PieceChecks Checks {get; private set;}
     
-    public bool CanMove(int fields) => GameHandler.Instance.currentPlayer == player &&      // der Spieler der Figur am Zug ist
-                                       NumberGenerator.Instance.lastNumber != 0 &&          // die letzte gewürfelte Nummer keine 0 ist
-                                       ((currentField is not BoxField && 
-                                            GetField(fields) is not null &&
-                                            (GetField(fields).IsFree || GetField(fields).GetCurrentPiece().player != player)) || 
-                                        (currentField is BoxField && 
-                                            fields == 6 && 
-                                            (player.spawnField.IsFree || player.spawnField.GetCurrentPiece().player != player)));
-    
-    public bool AllowedToMove() => GameHandler.Instance.currentPlayer == player &&
-                                   NumberGenerator.Instance.lastNumber != 0 && 
-                                   player.moveablePieces.Contains(this);
-    public bool CanCapture(int fields) => CanMove(fields) && !GetField(fields).IsFree && !GetField(fields).GetCurrentPiece().player == player;
-    public bool CanClearStartField(int fields) => currentField == player.spawnField && CanMove(fields);
-    public bool CanLeaveBox(int fields) => currentField is BoxField && CanMove(fields);
-    public bool CanEnterEndFields(int fields) => GetField(fields) is EndField;
-    public bool IsInBox() => currentField is BoxField;
-    public bool IsInEndFields() => currentField is EndField;
-    
-    // Start is called before the first frame update
+    new void Awake() {
+        base.Awake();
+        Checks = new PieceChecks(this);
+    }
+
     void Start()
     {
         SetMaterial();
@@ -67,7 +54,7 @@ public class Piece : MouseClickable
     }
 
     public void Move() {
-        if (inAnimation || !AllowedToMove()) return;
+        if (inAnimation || !Checks.AllowedToMove()) return;
         if (currentField is BoxField) {
             MoveToField(player.spawnField);
             Debug.Log($"{player.name} has moved {this.name} to his spawn field");
@@ -98,10 +85,10 @@ public class Piece : MouseClickable
     }
 
     public Field GetField(int numberOfFields) {
-        Field targetField = currentField.nextField;
-        for (int i=0; i<numberOfFields-1; i++) {
-            if (targetField is null || (targetField is EndField && !targetField.IsFree)) return null;
+        Field targetField = currentField;
+        for (int i=0; i<numberOfFields; i++) {
             targetField = targetField.endField is null || targetField?.endField.player != player ? targetField.nextField : targetField.endField;
+            if (targetField is null || (targetField is EndField && !targetField.IsFree)) return null;
         }
         return targetField;
     }
@@ -136,7 +123,39 @@ public class Piece : MouseClickable
         if (!GameHandler.Instance.currentPlayer.isBot) Move();
     }
 
+    protected override void OnHoverBegin() {}
+
+    protected override void OnHoverStop() {}
+
     protected override Color DetermineColor() {
-        return player != GameHandler.Instance.currentPlayer || GameHandler.Instance.currentPlayer.isBot || gen.lastNumber == 0 || player.HasMoved ? Color.grey : AllowedToMove() ? Color.green : Color.red;
+        return player != GameHandler.Instance.currentPlayer || GameHandler.Instance.currentPlayer.isBot || gen.lastNumber == 0 || player.HasMoved ? Color.grey : Checks.AllowedToMove() ? Color.green : Color.red;
+    }
+
+    public class PieceChecks {
+        Piece piece;
+        public PieceChecks(Piece piece) {
+            this.piece = piece;
+        }
+        
+    
+    public bool CanMove(int fields) => GameHandler.Instance.currentPlayer == piece.player &&      // der Spieler der Figur am Zug ist
+                                       NumberGenerator.Instance.lastNumber != 0 &&          // die letzte gewürfelte Nummer keine 0 ist
+                                       ((piece.currentField is not BoxField && 
+                                            piece.GetField(fields) is not null &&
+                                            (piece.GetField(fields).IsFree || piece.GetField(fields).GetCurrentPiece().player != piece.player)) || 
+                                        (piece.currentField is BoxField && 
+                                            fields == 6 && 
+                                            (piece.player.spawnField.IsFree || piece.player.spawnField.GetCurrentPiece().player != piece.player)));
+    
+    public bool AllowedToMove() => GameHandler.Instance.currentPlayer == piece.player &&
+                                   NumberGenerator.Instance.lastNumber != 0 && 
+                                   piece.player.moveablePieces.Contains(piece);
+    public bool CanCapture(int fields) => CanMove(fields) && !piece.GetField(fields).IsFree && !piece.GetField(fields).GetCurrentPiece().player == piece.player;
+    public bool CanClearStartField(int fields) => piece.currentField == piece.player.spawnField && CanMove(fields);
+    public bool CanLeaveBox(int fields) => piece.currentField is BoxField && CanMove(fields);
+    public bool CanEnterEndFields(int fields) => piece.GetField(fields) is EndField && piece.currentField is not EndField && CanMove(fields);
+    public bool CanAdvanceInEndFields(int fields) => piece.gen.lastNumber < 4 && piece.currentField is EndField && piece.GetField(fields) == piece.player.GetHighestFreeEndField() && CanMove(fields);
+    public bool IsInBox() => piece.currentField is BoxField;
+    public bool IsInEndFields() => piece.currentField is EndField;
     }
 }

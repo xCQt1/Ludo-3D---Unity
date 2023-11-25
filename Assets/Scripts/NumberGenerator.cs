@@ -91,6 +91,10 @@ public class NumberGenerator : MouseClickable
         if (!GameHandler.Instance.currentPlayer.isBot) GetNewNumber(GameHandler.Instance.currentPlayer);
     }
 
+    protected override void OnHoverBegin() {}
+
+    protected override void OnHoverStop() {}
+
     protected override Color DetermineColor() {
         return GameHandler.Instance.currentPlayer.isBot || !GameHandler.Instance.currentPlayer.CanThrowDice()? Color.grey : Color.green;
     }

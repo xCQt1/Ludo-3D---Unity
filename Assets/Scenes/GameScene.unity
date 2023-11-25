@@ -2555,7 +2555,6 @@ MonoBehaviour:
   - {fileID: 1980758895}
   spawnField: {fileID: 1948236887083078505}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
-  color: {r: 1, g: 0, b: 0, a: 0}
   PlayerMaterial: {fileID: 2100000, guid: 120128b3b396253409f3349148f9754f, type: 2}
   CamTransform: {fileID: 854626581}
   isBot: 1
@@ -4545,7 +4544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd3956cfebe09547a224d4c58cb9047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VerboseLogging: 1
   SpotlightMoveDuration: 0.75
   spotlight: {fileID: 380383475}
   players:
@@ -4553,6 +4551,7 @@ MonoBehaviour:
   - {fileID: 1516626681}
   - {fileID: 1937351353}
   - {fileID: 825701501}
+  ghostPrefab: {fileID: 9022509936916477734, guid: a9b76716ac2760b45a62d955bff32d44, type: 3}
   currentPlayer: {fileID: 0}
   gameOver: 0
   inAnimation: 0
@@ -4597,7 +4596,6 @@ MonoBehaviour:
   - {fileID: 1808708627}
   spawnField: {fileID: 870323416}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
-  color: {r: 0.039215688, g: 0.039215688, b: 0.039215688, a: 0}
   PlayerMaterial: {fileID: 2100000, guid: 79ae0c946dd85af4ca611fa6d15f4b96, type: 2}
   CamTransform: {fileID: 1388275893}
   isBot: 0
@@ -5377,7 +5375,6 @@ MonoBehaviour:
   - {fileID: 1020656954}
   spawnField: {fileID: 87317332}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
-  color: {r: 1, g: 1, b: 0, a: 0}
   PlayerMaterial: {fileID: 2100000, guid: 805a75ce0463e834bb02a977a25d277d, type: 2}
   CamTransform: {fileID: 311376835}
   isBot: 1
@@ -6463,7 +6460,6 @@ MonoBehaviour:
   - {fileID: 734523175}
   spawnField: {fileID: 2084633691}
   piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
-  color: {r: 0, g: 0.6, b: 0, a: 0}
   PlayerMaterial: {fileID: 2100000, guid: dcb8a00ff4d660b49a76ba7f8c16deba, type: 2}
   CamTransform: {fileID: 27052728}
   isBot: 1
