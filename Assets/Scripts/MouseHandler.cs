@@ -14,7 +14,7 @@ public class MouseHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()   // gets the selected object and determines, whether it is being clicked on
     {
         GetSelectedObj();
         if (Input.GetKeyDown(KeyCode.Mouse0)) {
@@ -22,9 +22,9 @@ public class MouseHandler : MonoBehaviour
         }
     }
 
-    private void GetSelectedObj() {
+    private void GetSelectedObj() {     // determines currently with the cursor selected object
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit)) {
+        if (Physics.Raycast(ray, out RaycastHit hit)) {     // raycast from camera "through" cursor
             
             GameObject go = hit.collider.gameObject;
 
@@ -32,13 +32,13 @@ public class MouseHandler : MonoBehaviour
             currentObj = go.GetComponent<Piece>();
             currentObj ??= go.GetComponent<NumberGenerator>();
 
-            if (currentObj is not null && currentObj != lastObj) {
+            if (currentObj is not null && currentObj != lastObj) {  // case that a new object is selected and different from last one
                 lastObj?.OnHoverExit();
 
                 lastObj = currentObj;
                 lastObj.OnHover();
 
-            } else if (currentObj is null && lastObj is not null) {
+            } else if (currentObj is null && lastObj is not null) { // if mouse unselected last object
                 lastObj.OnHoverExit();
                 lastObj = null;
             }

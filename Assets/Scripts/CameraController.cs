@@ -13,12 +13,12 @@ public class CameraController : MonoBehaviour
         Instance = this;
     }
     
-    public void TransitionToPlayerPerspective(Player player) {
+    public void TransitionToPlayerPerspective(Player player) {      // moves the camera to the players perspective
         Debug.Log($"Transitioning to Perspective of {player.name}");
         StartCoroutine(Transition(player));
     }
 
-    private IEnumerator Transition(Player player) {
+    private IEnumerator Transition(Player player) {     // actual animation
         while(inAnimation) {    // Wait for any ongoing animation to finish
             yield return new WaitForSeconds(0.5f);
         }

@@ -32,7 +32,7 @@ public class GameHandler : MonoBehaviour
         SwitchToNextPlayer();
     }
 
-    public void ResetGame() {
+    public void ResetGame() {   // resets all pieces to their start position
         foreach(Player player in players) {
             player.Reset();
         }
@@ -42,7 +42,7 @@ public class GameHandler : MonoBehaviour
         currentPlayer = players[^1];
     }
 
-    public void SwitchToNextPlayer() {
+    public void SwitchToNextPlayer() {  // ends the current players turn and transitions to the next ones
         gameOver = HasPlayerWon(currentPlayer);
         if (gameOver) HandleGameOver(currentPlayer);
         NumberGenerator.Instance.Reset();
@@ -59,11 +59,11 @@ public class GameHandler : MonoBehaviour
         Application.Quit();
     }
 
-    private void MoveSpotlightTo(Vector3 position) {
+    private void MoveSpotlightTo(Vector3 position) {    // moves the turn-indicating spotlight to a certain player
         StartCoroutine(moveSpotlight(position));
     }
 
-    private IEnumerator moveSpotlight(Vector3 targetPosition) {
+    private IEnumerator moveSpotlight(Vector3 targetPosition) {  // coroutine for MoveSpotlightTo()
         inAnimation = true;
 
         float timeElapsed = 0f;

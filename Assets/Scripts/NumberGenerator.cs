@@ -12,7 +12,7 @@ public class NumberGenerator : MouseClickable
     [HideInInspector] public int lastNumber = 0;
     [HideInInspector] public bool inAnimation {get; private set;}
 
-    public static NumberGenerator Instance {get; private set;}
+    public static NumberGenerator Instance {get; private set;}  // static instance of this class
     
     
     private new void Awake() {
@@ -25,7 +25,7 @@ public class NumberGenerator : MouseClickable
         lastNumber = 0;
     }
 
-    public void GetNewNumber(Player player) {
+    public void GetNewNumber(Player player) {   // spawns a new number, aka rolling the dice
         if (!player.CanThrowDice()) return;
 
         int result = new System.Random().Next(1,7);
@@ -41,12 +41,7 @@ public class NumberGenerator : MouseClickable
         Debug.Log($"{lastPlayer.name} has thrown a {result}");
     }
 
-    public void RedoThrow() {
-        if (lastNumber == 0) return;
-        lastNumber = new System.Random().Next(1,7);
-    }
-
-    private void SpawnNumber(int number) {
+    private void SpawnNumber(int number) {  // spawns the spinning number
         if (currentNumber is not null) {
             DestroyNumber();
         }
@@ -64,30 +59,7 @@ public class NumberGenerator : MouseClickable
         //StartCoroutine(AnimateNumberFly(piece));
     }
 
-    private IEnumerator AnimateNumberFly(Piece piece) {
-        inAnimation = true;
-
-        float timeElapsed = 0f;
-        Vector3 startPos = currentNumber.transform.position;
-        Vector3 targetPos = piece.transform.position;
-
-        Vector3 startScale = currentNumber.transform.localScale;
-        Vector3 targetScale = Vector3.one * .7f;
-
-        while (timeElapsed < AnimationDuration) {
-            currentNumber.transform.position = Vector3.Lerp(startPos, targetPos, timeElapsed/AnimationDuration);
-            currentNumber.transform.localScale = Vector3.Lerp(startScale, targetScale, timeElapsed/AnimationDuration);
-            
-            Physics.SyncTransforms();
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        Reset();
-        inAnimation = false;
-    }
-
-    public override void OnClick() {
+    public override void OnClick() {    // this class' implementation of OnClick(), inherited from base
         if (!GameHandler.Instance.currentPlayer.isBot) GetNewNumber(GameHandler.Instance.currentPlayer);
     }
 

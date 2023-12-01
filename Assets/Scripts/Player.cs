@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     
     public bool NoPiecesMovable() => moveablePieces.Count == 0;
     public bool CanThrowDice() => (numberOfThrows < 1 || (NoPiecesMovable() && gen.lastNumber != 6 && numberOfThrows < 3)) && !HasMoved;
-    public EndField GetHighestFreeEndField() => endFields.FirstOrDefault(field => field.IsFree);
+    public EndField GetHighestFreeEndField() => endFields.LastOrDefault(field => field.IsFree);
     
     // Start is called before the first frame update
     protected void Start()
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         gen = NumberGenerator.Instance;
     }
 
-    protected void InstantiatePieces() {
+    protected void InstantiatePieces() {    // instantiates 4 pieces
         foreach (BoxField field in boxFields) {
             GameObject go = Instantiate(piecePrefab, position: transform.position, rotation: Quaternion.identity, parent: transform);
             Piece piece = go.GetComponent<Piece>();
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void UpdateMoveablePieces() {
+    public void UpdateMoveablePieces() {    // redetermines the moveable pieces in the current turn for this player
         if (gen.lastNumber == 0) return;
 
         if (HasMoved) {
@@ -60,20 +60,22 @@ public class Player : MonoBehaviour
         if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.Checks.CanMove(gen.lastNumber));
     }
 
-    public void StartTurn() {
+    public void StartTurn() { 
         if (isBot) StartCoroutine(BotTurn());
         else StartCoroutine(Turn());
     }
 
-    private IEnumerator Turn() {
+    private IEnumerator Turn() {    // player-controlled turn
         CameraController.Instance.TransitionToPlayerPerspective(this);
         ResetTurnVariables();
         Debug.Log($"{this.name}'s turn has begun");
 
+        // rolling the dice
         while(!HasThrownDice) {
             yield return null;
         }
         
+        // moving a piece
         while(!HasMoved && !(numberOfThrows > 2 && NoPiecesMovable())) {
             UpdateMoveablePieces();
             yield return null;
@@ -85,10 +87,11 @@ public class Player : MonoBehaviour
         GameHandler.Instance.SwitchToNextPlayer();
     }
 
-    private IEnumerator BotTurn() {
+    private IEnumerator BotTurn() {     // bot-controlled turn
         ResetTurnVariables();
         yield return new WaitForSeconds(2.0f);
 
+        // rolling the dice
         while(CanThrowDice()) {
             gen.GetNewNumber(this);
 
@@ -98,6 +101,7 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
+        // move a piece
         if (!NoPiecesMovable()) {
             DetermineBestPieceToMove().Move();
             yield return new WaitForSeconds(2.0f);
@@ -107,14 +111,14 @@ public class Player : MonoBehaviour
         GameHandler.Instance.SwitchToNextPlayer();
     }
 
-    private Piece DetermineBestPieceToMove() {  // Big-Brain des Bots
+    private Piece DetermineBestPieceToMove() {  // determines the best piece to move
         UpdateMoveablePieces();
         if (moveablePieces.Count == 0) return null;
         Piece bestPiece = BestPieceToMove(moveablePieces);
         return bestPiece;
     }
 
-    private Piece BestPieceToMove(List<Piece> pieces) {
+    private Piece BestPieceToMove(List<Piece> pieces) { // actually determines the best piece to move
         List<Piece> temp = pieces;
         if (pieces.Count != 1) {
             temp = pieces.FindAll(piece => piece.Checks.CanEnterEndFields(gen.lastNumber));
@@ -128,13 +132,13 @@ public class Player : MonoBehaviour
         return temp[0];
     }
 
-    public void Reset() {
+    public void Reset() {   // returns all pieces to box by capturing them
         foreach (Piece piece in pieces) {
             piece.Capture();
         }
     }
 
-    private void ResetTurnVariables() {
+    private void ResetTurnVariables() {     // resets all variabled connected to the current turn
         HasMoved = false;
         HasThrownDice = false;
         numberOfThrows = 0;

@@ -17,7 +17,7 @@ public class Field : MonoBehaviour
         if (!nextField) Debug.LogError("Field not connected to next field (nextField is null)");
     }
 
-    public bool PlacePiece(Piece piece) {
+    public bool PlacePiece(Piece piece) {   // places a given piece on this field
         if (IsFree){
              CurrentPiece = piece;
         } else if (CurrentPiece.player != piece.player){
@@ -31,7 +31,6 @@ public class Field : MonoBehaviour
     }
 
     public void RemoveCurrentPiece() {
-        CurrentPiece = null;
-        
+        CurrentPiece = null;        
     }
 }

@@ -14,10 +14,10 @@ public class Piece : MouseClickable
     private Field currentField;
     [HideInInspector] public int FieldsMoved {get; private set; } = 0;
     [HideInInspector] public bool inAnimation {get; private set;}
-    public PieceChecks Checks {get; private set;}
+    public PieceChecks Checks {get; private set;}   // instance of PieceChecks
     
     new void Awake() {
-        base.Awake();
+        base.Awake();   // calls the base class' awake method to prevent certain errors
         Checks = new PieceChecks(this);
     }
 
@@ -28,11 +28,11 @@ public class Piece : MouseClickable
         gen = NumberGenerator.Instance;
     }
 
-    private void SetMaterial() {
+    private void SetMaterial() {    // sets the pieces material to the respective players material
         GetComponentInChildren<Renderer>().material = player.PlayerMaterial;
     }
 
-    public void SetStartField(BoxField field) {
+    public void SetStartField(BoxField field) {     // sets the startfield(the field the piece is to start on)
         currentField = field;
         currentField.PlacePiece(this);
         MovePieceToCurrentField();
@@ -42,7 +42,7 @@ public class Piece : MouseClickable
         transform.position = currentField.transform.position;
     }
 
-    public void Capture() {
+    public void Capture() {     // if piece is being captured
         foreach (BoxField boxField in player.boxFields) {
             if (boxField.IsFree) {
                 MoveToField(boxField);
@@ -53,10 +53,10 @@ public class Piece : MouseClickable
         Debug.LogError("Critical Error: No boxfield empty!");
     }
 
-    public void Move() {
+    public void Move() {    // method to handle moving the piece (so that you only have to call this one method)
         if (inAnimation || !Checks.AllowedToMove()) return;
         if (currentField is BoxField) {
-            MoveToField(player.spawnField);
+            MoveToField(player.spawnField);     // moves piece to spawn field
             Debug.Log($"{player.name} has moved {this.name} to his spawn field");
         } else {
             MoveFields(gen.lastNumber);
@@ -65,17 +65,17 @@ public class Piece : MouseClickable
         gen.Reset();
     }
 
-    public bool MoveToField(Field field) {
+    public bool MoveToField(Field field) {  // general class to move to another field if outside boxfields (since theyre not connected, it wouldnt technically work)
         if (field is null) return false;
         if (field.PlacePiece(this)) {
-            currentField.RemoveCurrentPiece();
+            currentField.RemoveCurrentPiece(); // removes piece from current field
             currentField = field;
-            currentField.PlacePiece(this);
+            currentField.PlacePiece(this);  // places piece on new field
             
             player.HasMoved = true;
 
             NumberGenerator.Instance.StartAnimation(this);
-            StartCoroutine(AnimatePieceMove(field));
+            StartCoroutine(AnimatePieceMove(field));    // start move animation
             return true;
         } else {
             Debug.Log("Piece move declined: Target field isnt empty");
@@ -84,7 +84,7 @@ public class Piece : MouseClickable
         
     }
 
-    public Field GetField(int numberOfFields) {
+    public Field GetField(int numberOfFields) {   // returns the target field for a move
         Field targetField = currentField;
         for (int i=0; i<numberOfFields; i++) {
             targetField = targetField.endField is null || targetField?.endField.player != player ? targetField.nextField : targetField.endField;
@@ -131,7 +131,7 @@ public class Piece : MouseClickable
         return player != GameHandler.Instance.currentPlayer || GameHandler.Instance.currentPlayer.isBot || gen.lastNumber == 0 || player.HasMoved ? Color.grey : Checks.AllowedToMove() ? Color.green : Color.red;
     }
 
-    public class PieceChecks {
+    public class PieceChecks {  // used to check the status of the piece, mostly for turns and to determine whether this piece is moveable
         Piece piece;
         public PieceChecks(Piece piece) {
             this.piece = piece;
