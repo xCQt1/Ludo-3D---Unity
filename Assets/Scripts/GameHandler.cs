@@ -13,6 +13,7 @@ public class GameHandler : MonoBehaviour
     [HideInInspector] public Player currentPlayer;
     [HideInInspector] public bool gameOver = false;
     [HideInInspector] public bool inAnimation = false;
+    [HideInInspector] public GameState gameState = GameState.MAINMENU;
 
     public static GameHandler Instance {get; private set;}
     private bool HasPlayerWon(Player player) => player.pieces.All(piece => piece.Checks.IsInEndFields());
@@ -24,7 +25,7 @@ public class GameHandler : MonoBehaviour
     
     void Start()
     {
-        StartGame();
+        //StartGame();
     }
 
     public void StartGame() {
@@ -39,6 +40,7 @@ public class GameHandler : MonoBehaviour
     }
 
     private void Setup() {
+        gameState = GameState.GAME;
         currentPlayer = players[^1];
     }
 
@@ -78,4 +80,11 @@ public class GameHandler : MonoBehaviour
 
         inAnimation = false;
     }
+}
+
+public enum GameState {
+    MAINMENU,
+    SETTINGSMENU,
+    GAME,
+    PAUSEMENU
 }

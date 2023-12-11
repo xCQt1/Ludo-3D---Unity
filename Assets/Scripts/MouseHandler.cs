@@ -16,6 +16,8 @@ public class MouseHandler : MonoBehaviour
     // Update is called once per frame
     void Update()   // gets the selected object and determines, whether it is being clicked on
     {
+        if (GameHandler.Instance.gameState != GameState.GAME) return;
+        
         GetSelectedObj();
         if (Input.GetKeyDown(KeyCode.Mouse0)) {
             lastObj?.OnClick();
