@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.VisualScripting;
 using System.Threading;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 public class GameHandler : MonoBehaviour
 {
@@ -21,14 +22,9 @@ public class GameHandler : MonoBehaviour
     private void Awake() {
         Instance = this;
     }
-    
-    
-    void Start()
-    {
-        //StartGame();
-    }
 
     public void StartGame() {
+        ResetGame();
         Setup();
         SwitchToNextPlayer();
     }
@@ -36,6 +32,24 @@ public class GameHandler : MonoBehaviour
     public void ResetGame() {   // resets all pieces to their start position
         foreach(Player player in players) {
             player.Reset();
+        }
+    }
+
+    public void PlacePiecesRandomly() {
+        foreach(Player player in players) {
+            player.Reset();
+            foreach(Piece piece in player.pieces) {
+                int chance = new System.Random().Next(1,11);
+                if (chance < 4) break;
+                if (chance > 9) piece.MoveToField(player.endFields[new System.Random().Next(0,4)]);
+                else {
+                    piece.MoveToField(player.spawnField);
+                    int random;
+                    do {
+                        random = new System.Random().Next(1,40);
+                    } while(!piece.MoveFields(random));
+                }
+            }
         }
     }
 
@@ -84,7 +98,6 @@ public class GameHandler : MonoBehaviour
 
 public enum GameState {
     MAINMENU,
-    SETTINGSMENU,
     GAME,
     PAUSEMENU
 }

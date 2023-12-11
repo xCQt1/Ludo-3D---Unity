@@ -43,6 +43,7 @@ public class Piece : MouseClickable
     }
 
     public void Capture() {     // if piece is being captured
+        if (currentField is BoxField) return;
         foreach (BoxField boxField in player.boxFields) {
             if (boxField.IsFree) {
                 MoveToField(boxField);
@@ -67,20 +68,19 @@ public class Piece : MouseClickable
 
     public bool MoveToField(Field field) {  // general class to move to another field if outside boxfields (since theyre not connected, it wouldnt technically work)
         if (field is null) return false;
-        if (field.PlacePiece(this)) {
-            currentField.RemoveCurrentPiece(); // removes piece from current field
-            currentField = field;
-            currentField.PlacePiece(this);  // places piece on new field
-            
-            player.HasMoved = true;
-
-            NumberGenerator.Instance.StartAnimation(this);
-            StartCoroutine(AnimatePieceMove(field));    // start move animation
-            return true;
-        } else {
+        if (!field.PlacePiece(this)) {
             Debug.Log("Piece move declined: Target field isnt empty");
             return false;
         }
+        currentField.RemoveCurrentPiece(); // removes piece from current field
+        currentField = field;
+        currentField.PlacePiece(this);  // places piece on new field
+            
+        player.HasMoved = true;
+
+        NumberGenerator.Instance.StartAnimation(this);
+        StartCoroutine(AnimatePieceMove(field));    // start move animation
+        return true;
         
     }
 
@@ -93,11 +93,16 @@ public class Piece : MouseClickable
         return targetField;
     }
 
-    public void MoveFields(int numberOfFields) {
-        if (MoveToField(GetField(numberOfFields))) FieldsMoved += numberOfFields;
+    public bool MoveFields(int numberOfFields) {
+        if (MoveToField(GetField(numberOfFields))) {
+            FieldsMoved += numberOfFields;
+            return true;
+        }
+        return false;
     }
 
     private IEnumerator AnimatePieceMove(Field newField) {
+        if (GameHandler.Instance.gameState == GameState.MAINMENU) goto end;
         inAnimation = true;
 
         while(NumberGenerator.Instance.inAnimation) {
@@ -116,6 +121,7 @@ public class Piece : MouseClickable
         }
 
         inAnimation = false;
+        end:
         MovePieceToCurrentField();
     }
 
@@ -131,7 +137,7 @@ public class Piece : MouseClickable
         return player != GameHandler.Instance.currentPlayer || GameHandler.Instance.currentPlayer.isBot || gen.lastNumber == 0 || player.HasMoved ? Color.grey : Checks.AllowedToMove() ? Color.green : Color.red;
     }
 
-    public class PieceChecks {  // used to check the status of the piece, mostly for turns and to determine whether this piece is moveable
+    public struct PieceChecks {  // used to check the status of the piece, mostly for turns and to determine whether this piece is moveable
         Piece piece;
         public PieceChecks(Piece piece) {
             this.piece = piece;
