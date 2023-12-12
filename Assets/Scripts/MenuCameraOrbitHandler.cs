@@ -14,7 +14,7 @@ public class MenuCameraOrbitHandler : MonoBehaviour
     [HideInInspector] Camera Camera;
     void Start()
     {
-        Camera = Camera.main;
+        Camera = gameObject.GetComponent<Camera>();
         GameHandler.Instance.PlacePiecesRandomly();
         StartCoroutine(CinematicCycle());
     }
@@ -58,5 +58,9 @@ public class MenuCameraOrbitHandler : MonoBehaviour
 
     private void RandomizeCameraSettingsAndPosition() {
         Camera.fieldOfView = new System.Random().Next(30,90);
+        System.Random random = new();
+        Camera.transform.position = new Vector3(random.Next(3,10), random.Next(3,10), random.Next(3,10));
+        Camera.transform.LookAt(Vector3.zero);
+        Physics.SyncTransforms();
     }
 }
