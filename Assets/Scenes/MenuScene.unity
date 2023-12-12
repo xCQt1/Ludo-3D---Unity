@@ -458,7 +458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeDuration: 0.7
   OrbitDuration: 8
-  RotationDegrees: 160
+  RotationDegrees: 100
   PanelBackground: {fileID: 729013672}
 --- !u!1 &525846126
 GameObject:
