@@ -7,13 +7,16 @@ using System.ComponentModel;
 
 public class Player : MonoBehaviour
 {
+    [Header("Parameters")]
+    [SerializeField] public bool isBot;
+
+    [Header("References")]
     [SerializeField] public List<BoxField> boxFields;
     [SerializeField] public List<EndField> endFields;
     [SerializeField] public SpawnField spawnField;
     [SerializeField] public GameObject piecePrefab;
     [SerializeField] public Material PlayerMaterial;
     [SerializeField] public Transform CamTransform;
-    [SerializeField] public bool isBot;
 
     protected NumberGenerator gen;
     protected int numberOfThrows;

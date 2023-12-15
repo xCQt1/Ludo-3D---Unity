@@ -4,7 +4,7 @@ using UnityEngine;
 
 abstract public class MouseClickable : MonoBehaviour    // parent class for all clickable gameobjects (currently number generator and pieces)
 {
-    public Outline outline;
+    [HideInInspector] public Outline outline;
 
     protected void Awake() {
         outline = GetComponentInChildren<Outline>();

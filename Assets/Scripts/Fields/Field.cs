@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Field : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] public Field nextField;
     [SerializeField] public EndField endField;
-    private Piece CurrentPiece;
+
+    [HideInInspector] private Piece CurrentPiece;
+
     public bool IsFree => CurrentPiece == null;
     public Field GetNextField() => nextField;
     public Piece GetCurrentPiece() => CurrentPiece;

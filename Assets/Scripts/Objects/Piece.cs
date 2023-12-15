@@ -8,7 +8,10 @@ using UnityEngine;
 
 public class Piece : MouseClickable
 {
+    [Header("Parameters")]
     [SerializeField] public static float MoveAnimationDuration = .5f;
+
+    [Header("References")]
     [SerializeField] public Player player;
     private NumberGenerator gen;
     private Field currentField;

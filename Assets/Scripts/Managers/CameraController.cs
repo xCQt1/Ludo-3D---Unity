@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Parameters")]
     [SerializeField] private float AnimationDuration;
     [HideInInspector] public bool inAnimation {get; private set;} = false;
 
@@ -44,4 +45,9 @@ public class CameraController : MonoBehaviour
 
         inAnimation = false;
     }
+
+    public void OrbitField() {
+
+    }
+    
 }

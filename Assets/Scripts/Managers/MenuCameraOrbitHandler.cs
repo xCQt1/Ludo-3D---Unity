@@ -5,34 +5,29 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Camera))]
 public class MenuCameraOrbitHandler : MonoBehaviour
 {
+    [Header("Parameters")]
     [SerializeField] float FadeDuration = 0.5f;
     [SerializeField] float OrbitDuration = 5.0f;
     [SerializeField] int RotationDegrees = 200;
+
+    [Header("References")]
     [SerializeField] Image PanelBackground;
     [HideInInspector] Camera Camera;
     void Start()
     {
         Camera = gameObject.GetComponent<Camera>();
-        GameHandler.Instance.PlacePiecesRandomly();
         StartCoroutine(CinematicCycle());
     }
 
     private IEnumerator CinematicCycle()  {
-        float timeElapsed = 0;
         RandomizeCameraSettingsAndPosition();
 
         while (true) {
-            //yield return new WaitForSeconds(OrbitDuration);
-            timeElapsed = 0;
-            while (timeElapsed < OrbitDuration) {
-                transform.RotateAround(Vector3.zero, Vector3.up, RotationDegrees/OrbitDuration * Time.deltaTime);
-                transform.LookAt(Vector3.zero);
-                timeElapsed += Time.deltaTime;
-                yield return null;
-            }            
-
+            StartCoroutine(CameraOrbit());
+            yield return new WaitForSeconds(OrbitDuration);
             StartCoroutine(ScreenFadeMagic());
         }
     }
@@ -44,14 +39,23 @@ public class MenuCameraOrbitHandler : MonoBehaviour
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-
-        GameHandler.Instance.PlacePiecesRandomly();
+        
         RandomizeCameraSettingsAndPosition();
         yield return new WaitForSeconds(0.2f);
 
         while (timeElapsed > 0) {
             PanelBackground.color = new Color(r: 0, g: 0, b: 0, a: timeElapsed/FadeDuration);
             timeElapsed -= Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator CameraOrbit() {
+        float timeElapsed = 0;
+        while (timeElapsed < OrbitDuration) {
+            transform.RotateAround(Vector3.zero, Vector3.up, RotationDegrees/OrbitDuration * Time.deltaTime);
+            transform.LookAt(Vector3.zero);
+            timeElapsed += Time.deltaTime;
             yield return null;
         }
     }

@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuHandler : MonoBehaviour
 {
-    private void Start() {
-        GameHandler.Instance.gameState = GameState.MAINMENU;
-    }
+    [Header("References")]
+    [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject SettingsMenu;
+    [SerializeField] private GameObject PlayerMenu;
 
-    public void PlayButton() {
-        SceneManager.UnloadSceneAsync("MenuScene");
+    public void Play() {
         GameHandler.Instance.StartGame();
     }
 

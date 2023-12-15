@@ -5,16 +5,23 @@ using Unity.VisualScripting;
 using System.Threading;
 using System.Linq;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour
 {
+    [Header("Parameters")]
     [SerializeField] private float SpotlightMoveDuration = 0.75f;
+
+    [Header("References")]
     [SerializeField] private GameObject spotlight;
     [SerializeField] public List<Player> players;
+
+    
     [HideInInspector] public Player currentPlayer;
     [HideInInspector] public bool gameOver = false;
     [HideInInspector] public bool inAnimation = false;
     [HideInInspector] public GameState gameState = GameState.MAINMENU;
+    [HideInInspector] public Difficulty difficulty = Difficulty.NORMAL;
 
     public static GameHandler Instance {get; private set;}
     private bool HasPlayerWon(Player player) => player.pieces.All(piece => piece.Checks.IsInEndFields());
@@ -23,7 +30,9 @@ public class GameHandler : MonoBehaviour
         Instance = this;
     }
 
-    public void StartGame() {
+    public void StartGame(Difficulty difficulty = Difficulty.NORMAL) {
+        SceneManager.UnloadSceneAsync("MenuScene");
+        this.difficulty = difficulty;
         ResetGame();
         Setup();
         SwitchToNextPlayer();
@@ -40,9 +49,9 @@ public class GameHandler : MonoBehaviour
             player.Reset();
             foreach(Piece piece in player.pieces) {
                 int chance = new System.Random().Next(1,11);
-                if (chance < 4) break;
-                if (chance > 9) piece.MoveToField(player.endFields[new System.Random().Next(0,4)]);
-                else {
+                if (chance < 4) break;  // piece stays on box
+                if (chance > 9) piece.MoveToField(player.endFields[new System.Random().Next(0,4)]);     // piece gets moved to a random end field
+                else {      // piece gets moved to a random field
                     piece.MoveToField(player.spawnField);
                     int random;
                     do {
@@ -100,4 +109,9 @@ public enum GameState {
     MAINMENU,
     GAME,
     PAUSEMENU
+}
+
+public enum Difficulty {
+    EASY,
+    NORMAL
 }

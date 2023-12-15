@@ -5,8 +5,11 @@ using UnityEngine.Analytics;
 
 public class NumberGenerator : MouseClickable
 {
-    [SerializeField] private List<GameObject> numbers;
+    [Header("Parameters")]
     [SerializeField] private float AnimationDuration;
+    
+    [Header("References")]
+    [SerializeField] private List<GameObject> numbers;
     private GameObject currentNumber;
     [HideInInspector] public Player lastPlayer;
     [HideInInspector] public int lastNumber = 0;
