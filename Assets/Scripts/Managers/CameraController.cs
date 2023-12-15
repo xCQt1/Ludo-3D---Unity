@@ -5,8 +5,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [Header("Parameters")]
-    [SerializeField] private float AnimationDuration;
-    [HideInInspector] public bool inAnimation {get; private set;} = false;
+    [SerializeField] private float _animationDuration;
+    [HideInInspector] public bool InAnimation {get; private set;} = false;
 
     public static CameraController Instance {get; private set;}
 
@@ -20,20 +20,20 @@ public class CameraController : MonoBehaviour
     }
 
     private IEnumerator Transition(Player player) {     // actual animation
-        while(inAnimation) {    // Wait for any ongoing animation to finish
+        while(InAnimation) {    // Wait for any ongoing animation to finish
             yield return new WaitForSeconds(0.5f);
         }
 
         float timeElapsed = 0f;
-        inAnimation = true;
+        InAnimation = true;
 
         Transform target = player.CamTransform;
         Transform start = transform;
 
-        while (timeElapsed < AnimationDuration) {
+        while (timeElapsed < _animationDuration) {
             
-            transform.position = Vector3.Lerp(start.position, target.position, timeElapsed/AnimationDuration);
-            transform.rotation = Quaternion.Slerp(start.transform.rotation, target.rotation, timeElapsed/AnimationDuration);
+            transform.position = Vector3.Lerp(start.position, target.position, timeElapsed/_animationDuration);
+            transform.rotation = Quaternion.Slerp(start.transform.rotation, target.rotation, timeElapsed/_animationDuration);
 
             Physics.SyncTransforms();
             timeElapsed += Time.deltaTime;
@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour
         transform.position = target.position;
         transform.rotation = target.rotation;
 
-        inAnimation = false;
+        InAnimation = false;
     }
 
     public void OrbitField() {

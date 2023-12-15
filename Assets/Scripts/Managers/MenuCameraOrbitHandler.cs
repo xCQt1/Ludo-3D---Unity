@@ -9,16 +9,16 @@ using UnityEngine.UI;
 public class MenuCameraOrbitHandler : MonoBehaviour
 {
     [Header("Parameters")]
-    [SerializeField] float FadeDuration = 0.5f;
-    [SerializeField] float OrbitDuration = 5.0f;
-    [SerializeField] int RotationDegrees = 200;
+    [SerializeField] private float FadeDuration = 0.5f;
+    [SerializeField] private float OrbitDuration = 5.0f;
+    [SerializeField] private int RotationDegrees = 200;
 
     [Header("References")]
-    [SerializeField] Image PanelBackground;
-    [HideInInspector] Camera Camera;
+    [SerializeField] private Image _panelBackground;
+    [HideInInspector] private Camera _camera;
     void Start()
     {
-        Camera = gameObject.GetComponent<Camera>();
+        _camera = gameObject.GetComponent<Camera>();
         StartCoroutine(CinematicCycle());
     }
 
@@ -35,7 +35,7 @@ public class MenuCameraOrbitHandler : MonoBehaviour
     private IEnumerator ScreenFadeMagic() {
         float timeElapsed = 0;
         while (timeElapsed < FadeDuration) {
-            PanelBackground.color = new Color(r: 0, g: 0, b: 0, a: timeElapsed/FadeDuration);
+            _panelBackground.color = new Color(r: 0, g: 0, b: 0, a: timeElapsed/FadeDuration);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -44,7 +44,7 @@ public class MenuCameraOrbitHandler : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         while (timeElapsed > 0) {
-            PanelBackground.color = new Color(r: 0, g: 0, b: 0, a: timeElapsed/FadeDuration);
+            _panelBackground.color = new Color(r: 0, g: 0, b: 0, a: timeElapsed/FadeDuration);
             timeElapsed -= Time.deltaTime;
             yield return null;
         }
@@ -61,10 +61,10 @@ public class MenuCameraOrbitHandler : MonoBehaviour
     }
 
     private void RandomizeCameraSettingsAndPosition() {
-        Camera.fieldOfView = new System.Random().Next(30,90);
+        _camera.fieldOfView = new System.Random().Next(30,90);
         System.Random random = new();
-        Camera.transform.position = new Vector3(random.Next(3,10), random.Next(3,10), random.Next(3,10));
-        Camera.transform.LookAt(Vector3.zero);
+        _camera.transform.position = new Vector3(random.Next(3,10), random.Next(3,10), random.Next(3,10));
+        _camera.transform.LookAt(Vector3.zero);
         Physics.SyncTransforms();
     }
 }

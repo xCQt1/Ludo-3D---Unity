@@ -4,30 +4,30 @@ using UnityEngine;
 
 abstract public class MouseClickable : MonoBehaviour    // parent class for all clickable gameobjects (currently number generator and pieces)
 {
-    [HideInInspector] public Outline outline;
+    [HideInInspector] public Outline Outline;
 
     protected void Awake() {
-        outline = GetComponentInChildren<Outline>();
-        if (outline is null) Debug.LogError("Outline ist null");
-        outline.enabled = false;
+        Outline = GetComponentInChildren<Outline>();
+        if (Outline is null) Debug.LogError("Outline ist null");
+        Outline.enabled = false;
     }
 
     private void Update() {
-        if (outline.enabled) SetOutlineColor(DetermineColor());
+        if (Outline.enabled) SetOutlineColor(DetermineColor());
     }
     
     public void OnHover() {     // called when cursor starts touching the object
         SetOutlineColor(DetermineColor());
-        outline.enabled = true;
+        Outline.enabled = true;
         OnHoverBegin();
     }
 
     public void OnHoverExit() {     // called when cursor ends touching the object
-        outline.enabled = false;
+        Outline.enabled = false;
         OnHoverStop();
     }
 
-    public void SetOutlineColor(Color color) => outline.OutlineColor = color;
+    public void SetOutlineColor(Color color) => Outline.OutlineColor = color;
 
     abstract public void OnClick();     // when clicked on object
     abstract protected void OnHoverBegin();     // abstract class to be implemented in children for OnHover()

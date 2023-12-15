@@ -8,63 +8,63 @@ using System.ComponentModel;
 public class Player : MonoBehaviour
 {
     [Header("Parameters")]
-    [SerializeField] public bool isBot;
+    [SerializeField] public bool IsBot;
 
     [Header("References")]
-    [SerializeField] public List<BoxField> boxFields;
-    [SerializeField] public List<EndField> endFields;
-    [SerializeField] public SpawnField spawnField;
-    [SerializeField] public GameObject piecePrefab;
+    [SerializeField] public List<BoxField> BoxFields;
+    [SerializeField] public List<EndField> EndFields;
+    [SerializeField] public SpawnField SpawnField {get; private set;}
+    [SerializeField] private GameObject _piecePrefab;
     [SerializeField] public Material PlayerMaterial;
     [SerializeField] public Transform CamTransform;
 
-    protected NumberGenerator gen;
-    protected int numberOfThrows;
-    [HideInInspector] public List<Piece> pieces {get; private set;} = new();
+    private NumberGenerator _gen;
+    private int _numberOfThrows;
+    [HideInInspector] public List<Piece> Pieces {get; private set;} = new();
     [HideInInspector] public bool HasMoved = false;
     [HideInInspector] public bool HasThrownDice = false;
-    [HideInInspector] public List<Piece> moveablePieces = new();
+    [HideInInspector] public List<Piece> _MoveablePieces {get; private set;} = new();
     
-    public bool NoPiecesMovable() => moveablePieces.Count == 0;
-    public bool CanThrowDice() => (numberOfThrows < 1 || (NoPiecesMovable() && gen.lastNumber != 6 && numberOfThrows < 3)) && !HasMoved;
-    public EndField GetHighestFreeEndField() => endFields.LastOrDefault(field => field.IsFree);
+    public bool NoPiecesMovable() => _MoveablePieces.Count == 0;
+    public bool CanThrowDice() => (_numberOfThrows < 1 || (NoPiecesMovable() && _gen.lastNumber != 6 && _numberOfThrows < 3)) && !HasMoved;
+    public EndField GetHighestFreeEndField() => EndFields.LastOrDefault(field => field.IsFree);
     
     // Start is called before the first frame update
     protected void Start()
     {
         InstantiatePieces();
-        gen = NumberGenerator.Instance;
+        _gen = NumberGenerator.Instance;
     }
 
     protected void InstantiatePieces() {    // instantiates 4 pieces
-        foreach (BoxField field in boxFields) {
-            GameObject go = Instantiate(piecePrefab, position: transform.position, rotation: Quaternion.identity, parent: transform);
+        foreach (BoxField field in BoxFields) {
+            GameObject go = Instantiate(_piecePrefab, position: transform.position, rotation: Quaternion.identity, parent: transform);
             Piece piece = go.GetComponent<Piece>();
-            pieces.Add(go.GetComponent<Piece>());
+            Pieces.Add(go.GetComponent<Piece>());
             piece.SetStartField(field);
             piece.player = this;
         }
     }
 
     public void UpdateMoveablePieces() {    // redetermines the moveable pieces in the current turn for this player
-        if (gen.lastNumber == 0) return;
+        if (_gen.lastNumber == 0) return;
 
         if (HasMoved) {
-            moveablePieces = new();
+            _MoveablePieces = new();
             return;
         }
         // Raussetzen
-        moveablePieces = pieces.FindAll(piece => piece.Checks.CanLeaveBox(gen.lastNumber));
+        _MoveablePieces = Pieces.FindAll(piece => piece.Checks.CanLeaveBox(_gen.lastNumber));
         // Freimachen
-        if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.Checks.CanClearStartField(gen.lastNumber));
+        if (_MoveablePieces.Count == 0) _MoveablePieces = Pieces.FindAll(piece => piece.Checks.CanClearStartField(_gen.lastNumber));
         // Schlagen
-        if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.Checks.CanCapture(gen.lastNumber));
+        if (_MoveablePieces.Count == 0) _MoveablePieces = Pieces.FindAll(piece => piece.Checks.CanCapture(_gen.lastNumber));
         // andere Züge
-        if (moveablePieces.Count == 0) moveablePieces = pieces.FindAll(piece => piece.Checks.CanMove(gen.lastNumber));
+        if (_MoveablePieces.Count == 0) _MoveablePieces = Pieces.FindAll(piece => piece.Checks.CanMove(_gen.lastNumber));
     }
 
     public void StartTurn() { 
-        if (isBot) StartCoroutine(BotTurn());
+        if (IsBot) StartCoroutine(BotTurn());
         else StartCoroutine(Turn());
     }
 
@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         }
         
         // moving a piece
-        while(!HasMoved && !(numberOfThrows > 2 && NoPiecesMovable())) {
+        while(!HasMoved && !(_numberOfThrows > 2 && NoPiecesMovable())) {
             UpdateMoveablePieces();
             yield return null;
         }
@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
 
         // rolling the dice
         while(CanThrowDice()) {
-            gen.GetNewNumber(this);
+            _gen.GetNewNumber(this);
 
             UpdateMoveablePieces();
             yield return new WaitForSeconds(1.0f);
@@ -116,18 +116,18 @@ public class Player : MonoBehaviour
 
     private Piece DetermineBestPieceToMove() {  // determines the best piece to move
         UpdateMoveablePieces();
-        if (moveablePieces.Count == 0) return null;
-        Piece bestPiece = BestPieceToMove(moveablePieces);
+        if (_MoveablePieces.Count == 0) return null;
+        Piece bestPiece = BestPieceToMove(_MoveablePieces);
         return bestPiece;
     }
 
     private Piece BestPieceToMove(List<Piece> pieces) { // actually determines the best piece to move
         List<Piece> temp = pieces;
         if (pieces.Count != 1) {
-            temp = pieces.FindAll(piece => piece.Checks.CanEnterEndFields(gen.lastNumber));
+            temp = pieces.FindAll(piece => piece.Checks.CanEnterEndFields(_gen.lastNumber));
             if (temp.Count != 1) temp = pieces; else goto x;
 
-            temp = pieces.FindAll(piece => piece.Checks.CanAdvanceInEndFields(gen.lastNumber));
+            temp = pieces.FindAll(piece => piece.Checks.CanAdvanceInEndFields(_gen.lastNumber));
             if (temp.Count != 1) temp = pieces; else goto x;
         }
 
@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
     }
 
     public void Reset() {   // returns all pieces to box by capturing them
-        foreach (Piece piece in pieces) {
+        foreach (Piece piece in Pieces) {
             piece.Capture();
         }
     }
@@ -144,10 +144,10 @@ public class Player : MonoBehaviour
     private void ResetTurnVariables() {     // resets all variabled connected to the current turn
         HasMoved = false;
         HasThrownDice = false;
-        numberOfThrows = 0;
-        moveablePieces = new();
+        _numberOfThrows = 0;
+        _MoveablePieces = new();
     }
 
-    public void IncreaseDiceThrows() => numberOfThrows++;
-    public void ResetDiceThrows() => numberOfThrows = 0;
+    public void IncreaseDiceThrows() => _numberOfThrows++;
+    public void ResetDiceThrows() => _numberOfThrows = 0;
 }

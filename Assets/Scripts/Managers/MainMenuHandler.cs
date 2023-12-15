@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class MainMenuHandler : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject MainMenu;
-    [SerializeField] private GameObject SettingsMenu;
-    [SerializeField] private GameObject PlayerMenu;
+    [SerializeField] private readonly GameObject _mainMenu;
+    [SerializeField] private readonly GameObject _settingsMenu;
+    [SerializeField] private readonly GameObject _playerMenu;
 
     public void Play() {
         GameHandler.Instance.StartGame();

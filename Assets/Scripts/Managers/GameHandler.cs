@@ -13,18 +13,18 @@ public class GameHandler : MonoBehaviour
     [SerializeField] private float SpotlightMoveDuration = 0.75f;
 
     [Header("References")]
-    [SerializeField] private GameObject spotlight;
-    [SerializeField] public List<Player> players;
+    [SerializeField] private GameObject _spotlight;
+    [SerializeField] public List<Player> Players;
 
     
-    [HideInInspector] public Player currentPlayer;
-    [HideInInspector] public bool gameOver = false;
-    [HideInInspector] public bool inAnimation = false;
-    [HideInInspector] public GameState gameState = GameState.MAINMENU;
-    [HideInInspector] public Difficulty difficulty = Difficulty.NORMAL;
+    [HideInInspector] public Player CurrentPlayer;
+    [HideInInspector] public bool GameOver = false;
+    [HideInInspector] public bool InAnimation = false;
+    [HideInInspector] public GameState GameState = GameState.MAINMENU;
+    [HideInInspector] public Difficulty Difficulty = Difficulty.NORMAL;
 
     public static GameHandler Instance {get; private set;}
-    private bool HasPlayerWon(Player player) => player.pieces.All(piece => piece.Checks.IsInEndFields());
+    private bool HasPlayerWon(Player player) => player.Pieces.All(piece => piece.Checks.IsInEndFields());
 
     private void Awake() {
         Instance = this;
@@ -32,27 +32,27 @@ public class GameHandler : MonoBehaviour
 
     public void StartGame(Difficulty difficulty = Difficulty.NORMAL) {
         SceneManager.UnloadSceneAsync("MenuScene");
-        this.difficulty = difficulty;
+        this.Difficulty = difficulty;
         ResetGame();
         Setup();
         SwitchToNextPlayer();
     }
 
     public void ResetGame() {   // resets all pieces to their start position
-        foreach(Player player in players) {
+        foreach(Player player in Players) {
             player.Reset();
         }
     }
 
     public void PlacePiecesRandomly() {
-        foreach(Player player in players) {
+        foreach(Player player in Players) {
             player.Reset();
-            foreach(Piece piece in player.pieces) {
+            foreach(Piece piece in player.Pieces) {
                 int chance = new System.Random().Next(1,11);
                 if (chance < 4) break;  // piece stays on box
-                if (chance > 9) piece.MoveToField(player.endFields[new System.Random().Next(0,4)]);     // piece gets moved to a random end field
+                if (chance > 9) piece.MoveToField(player.EndFields[new System.Random().Next(0,4)]);     // piece gets moved to a random end field
                 else {      // piece gets moved to a random field
-                    piece.MoveToField(player.spawnField);
+                    piece.MoveToField(player.SpawnField);
                     int random;
                     do {
                         random = new System.Random().Next(1,40);
@@ -63,19 +63,19 @@ public class GameHandler : MonoBehaviour
     }
 
     private void Setup() {
-        gameState = GameState.GAME;
-        currentPlayer = players[^1];
+        GameState = GameState.GAME;
+        CurrentPlayer = Players[^1];
     }
 
     public void SwitchToNextPlayer() {  // ends the current players turn and transitions to the next ones
-        gameOver = HasPlayerWon(currentPlayer);
-        if (gameOver) HandleGameOver(currentPlayer);
+        GameOver = HasPlayerWon(CurrentPlayer);
+        if (GameOver) HandleGameOver(CurrentPlayer);
         NumberGenerator.Instance.Reset();
 
         // next player
-        currentPlayer = players[(players.IndexOf(currentPlayer) + 1) % 4];
-        MoveSpotlightTo(currentPlayer.transform.position + Vector3.up * 4);
-        currentPlayer.StartTurn();
+        CurrentPlayer = Players[(Players.IndexOf(CurrentPlayer) + 1) % Players.Count];
+        MoveSpotlightTo(CurrentPlayer.transform.position + Vector3.up * 4);
+        CurrentPlayer.StartTurn();
 
     }
 
@@ -89,19 +89,19 @@ public class GameHandler : MonoBehaviour
     }
 
     private IEnumerator moveSpotlight(Vector3 targetPosition) {  // coroutine for MoveSpotlightTo()
-        inAnimation = true;
+        InAnimation = true;
 
         float timeElapsed = 0f;
-        Vector3 startPosition = spotlight.transform.position;
+        Vector3 startPosition = _spotlight.transform.position;
 
         while(timeElapsed < SpotlightMoveDuration) {
-            spotlight.transform.position = Vector3.Lerp(startPosition, targetPosition, timeElapsed/SpotlightMoveDuration);
+            _spotlight.transform.position = Vector3.Lerp(startPosition, targetPosition, timeElapsed/SpotlightMoveDuration);
             Physics.SyncTransforms();
             timeElapsed += Time.deltaTime;
             yield return null;
         }
 
-        inAnimation = false;
+        InAnimation = false;
     }
 }
 

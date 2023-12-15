@@ -63,7 +63,7 @@ public class NumberGenerator : MouseClickable
     }
 
     public override void OnClick() {    // this class' implementation of OnClick(), inherited from base
-        if (!GameHandler.Instance.currentPlayer.isBot) GetNewNumber(GameHandler.Instance.currentPlayer);
+        if (!GameHandler.Instance.CurrentPlayer.IsBot) GetNewNumber(GameHandler.Instance.CurrentPlayer);
     }
 
     protected override void OnHoverBegin() {}
@@ -71,6 +71,6 @@ public class NumberGenerator : MouseClickable
     protected override void OnHoverStop() {}
 
     protected override Color DetermineColor() {
-        return GameHandler.Instance.currentPlayer.isBot || !GameHandler.Instance.currentPlayer.CanThrowDice()? Color.grey : Color.green;
+        return GameHandler.Instance.CurrentPlayer.IsBot || !GameHandler.Instance.CurrentPlayer.CanThrowDice()? Color.grey : Color.green;
     }
 }

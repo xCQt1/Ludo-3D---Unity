@@ -5,28 +5,28 @@ using UnityEngine;
 public class Field : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] public Field nextField;
-    [SerializeField] public EndField endField;
+    [SerializeField] public Field NextField;
+    [SerializeField] public EndField EndField;
 
-    [HideInInspector] private Piece CurrentPiece;
+    [HideInInspector] private Piece _currentPiece;
 
-    public bool IsFree => CurrentPiece == null;
-    public Field GetNextField() => nextField;
-    public Piece GetCurrentPiece() => CurrentPiece;
+    public bool IsFree => _currentPiece == null;
+    public Field GetNextField() => NextField;
+    public Piece GetCurrentPiece() => _currentPiece;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (!nextField) Debug.LogError("Field not connected to next field (nextField is null)");
+        if (!NextField) Debug.LogError("Field not connected to next field (nextField is null)");
     }
 
     public bool PlacePiece(Piece piece) {   // places a given piece on this field
         if (IsFree){
-             CurrentPiece = piece;
-        } else if (CurrentPiece.player != piece.player){
-            Debug.Log($"{piece.player} has captured a piece from {CurrentPiece.player}");
-            CurrentPiece.Capture();
-            CurrentPiece = piece;
+             _currentPiece = piece;
+        } else if (_currentPiece.player != piece.player){
+            Debug.Log($"{piece.player} has captured a piece from {_currentPiece.player}");
+            _currentPiece.Capture();
+            _currentPiece = piece;
         } else {
             return false;
         }
@@ -34,6 +34,6 @@ public class Field : MonoBehaviour
     }
 
     public void RemoveCurrentPiece() {
-        CurrentPiece = null;        
+        _currentPiece = null;        
     }
 }
