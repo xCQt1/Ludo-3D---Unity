@@ -141,7 +141,7 @@ public class Piece : MouseClickable
     }
 
     public struct PieceChecks {  // used to check the status of the piece, mostly for turns and to determine whether this piece is moveable
-        Piece piece;
+        readonly Piece piece;
         public PieceChecks(Piece piece) {
             this.piece = piece;
         }

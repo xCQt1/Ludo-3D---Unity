@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [Header("References")]
     [SerializeField] public List<BoxField> BoxFields;
     [SerializeField] public List<EndField> EndFields;
-    [SerializeField] public SpawnField SpawnField {get; private set;}
+    [SerializeField] public SpawnField SpawnField;
     [SerializeField] private GameObject _piecePrefab;
     [SerializeField] public Material PlayerMaterial;
     [SerializeField] public Transform CamTransform;

@@ -494,7 +494,7 @@ MonoBehaviour:
   FadeDuration: 0.7
   OrbitDuration: 8
   RotationDegrees: 100
-  PanelBackground: {fileID: 729013672}
+  _panelBackground: {fileID: 729013672}
 --- !u!1 &525846126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,9 +1020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed61e81e53b38cf4087d880313fb6312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenu: {fileID: 0}
-  SettingsMenu: {fileID: 0}
-  PlayerMenu: {fileID: 0}
 --- !u!1 &1670925627
 GameObject:
   m_ObjectHideFlags: 0

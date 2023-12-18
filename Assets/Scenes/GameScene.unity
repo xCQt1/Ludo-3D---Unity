@@ -136,6 +136,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 2088375115}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 2088375115}
@@ -214,6 +218,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1750244983}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 1750244983}
@@ -287,6 +295,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
+    - target: {fileID: 416025214248930879, guid: 4e8ddb042794ce644bb425ce8c47bd6a, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 2110206615}
     - target: {fileID: 416025214248930879, guid: 4e8ddb042794ce644bb425ce8c47bd6a, type: 3}
       propertyPath: nextField
       value: 
@@ -427,6 +439,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 594888192}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -571,6 +587,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1516626681}
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1516626681}
@@ -657,6 +677,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 791186289}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 791186289}
@@ -734,6 +758,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 562249387}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -897,6 +925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 2085664553}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -1091,6 +1123,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 2117268447}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 2117268447}
@@ -1168,6 +1204,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 904535351}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -1336,6 +1376,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1502090309}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 1502090309}
@@ -1429,6 +1473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1388446207}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -1569,6 +1617,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1320461582}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -2005,6 +2057,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1312675297}
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1312675297}
@@ -2086,6 +2142,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1937351353}
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
@@ -2190,6 +2250,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1197955994}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -2397,7 +2461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b55e687d1e8c844b7484cea52b964e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline: {fileID: 0}
+  Outline: {fileID: 0}
   AnimationDuration: 0.5
   numbers:
   - {fileID: 5179077755779999032, guid: 0f78bd2e62549e748824550781c2cb39, type: 3}
@@ -2453,6 +2517,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 825701501}
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
@@ -2546,6 +2614,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 825701501}
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
@@ -2649,24 +2721,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0f9d1ed41be8c42b1e21cb511650d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBot: 1
-  boxFields:
+  IsBot: 1
+  BoxFields:
   - {fileID: 696156064}
   - {fileID: 943470432}
   - {fileID: 1957024101}
   - {fileID: 1759673420}
-  endFields:
+  EndFields:
   - {fileID: 1254539626}
   - {fileID: 804940688}
   - {fileID: 1540544666}
   - {fileID: 1980758895}
-  spawnField: {fileID: 1948236887083078505}
-  piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
+  SpawnField: {fileID: 1948236887083078505}
+  _piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   PlayerMaterial: {fileID: 2100000, guid: 120128b3b396253409f3349148f9754f, type: 2}
   CamTransform: {fileID: 854626581}
   HasMoved: 0
   HasThrownDice: 0
-  moveablePieces: []
 --- !u!4 &825701502
 Transform:
   m_ObjectHideFlags: 0
@@ -2691,6 +2762,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1312675297}
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
@@ -2874,6 +2949,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1494604084}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 1494604084}
@@ -2962,6 +3041,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 845236033}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -3247,7 +3330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104364f3da493314aacaac54fa8705fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationDuration: 2
+  _animationDuration: 0.5
 --- !u!1001 &964614348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3334,6 +3417,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1892353900}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -3540,6 +3627,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1516626681}
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1516626681}
@@ -3633,9 +3724,17 @@ PrefabInstance:
       value: EndFieldEntry Green
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: EndField
+      value: 
+      objectReference: {fileID: 1435953315}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: endField
       value: 
       objectReference: {fileID: 1435953315}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 2084633691}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -3725,6 +3824,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 2107925840}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -3874,6 +3977,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1516626681}
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1516626681}
@@ -3955,6 +4062,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1312675297}
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
@@ -4063,6 +4174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 933543207}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -4259,6 +4374,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1793078814}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 1793078814}
@@ -4337,6 +4456,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 526803137}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 526803137}
@@ -4414,6 +4537,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 2107925840}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -4750,17 +4877,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpotlightMoveDuration: 0.75
-  spotlight: {fileID: 380383475}
-  players:
+  _spotlight: {fileID: 380383475}
+  Players:
   - {fileID: 1312675297}
   - {fileID: 1516626681}
   - {fileID: 1937351353}
   - {fileID: 825701501}
-  currentPlayer: {fileID: 0}
-  gameOver: 0
-  inAnimation: 0
-  gameState: 0
-  difficulty: 1
+  CurrentPlayer: {fileID: 0}
+  GameOver: 0
+  InAnimation: 0
+  GameState: 0
+  Difficulty: 1
 --- !u!1 &1312675296
 GameObject:
   m_ObjectHideFlags: 0
@@ -4790,24 +4917,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0f9d1ed41be8c42b1e21cb511650d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBot: 0
-  boxFields:
+  IsBot: 0
+  BoxFields:
   - {fileID: 307873238}
   - {fileID: 1592679687}
   - {fileID: 766871333}
   - {fileID: 1007118026}
-  endFields:
+  EndFields:
   - {fileID: 1119592196}
   - {fileID: 1118127847}
   - {fileID: 825904836}
   - {fileID: 1808708627}
-  spawnField: {fileID: 870323416}
-  piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
+  SpawnField: {fileID: 870323416}
+  _piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   PlayerMaterial: {fileID: 2100000, guid: 79ae0c946dd85af4ca611fa6d15f4b96, type: 2}
   CamTransform: {fileID: 1388275893}
   HasMoved: 0
   HasThrownDice: 0
-  moveablePieces: []
 --- !u!4 &1312675298
 Transform:
   m_ObjectHideFlags: 0
@@ -4933,6 +5059,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1937351353}
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
@@ -5385,6 +5515,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1937351353}
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1937351353}
@@ -5478,6 +5612,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
     - target: {fileID: 416025214248930879, guid: 4e8ddb042794ce644bb425ce8c47bd6a, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1008360575}
+    - target: {fileID: 416025214248930879, guid: 4e8ddb042794ce644bb425ce8c47bd6a, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 1008360575}
@@ -5565,6 +5703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1069200366}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -5671,24 +5813,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0f9d1ed41be8c42b1e21cb511650d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBot: 1
-  boxFields:
+  IsBot: 1
+  BoxFields:
   - {fileID: 83135167871323913}
   - {fileID: 1566851642}
   - {fileID: 766670337}
   - {fileID: 745296499}
-  endFields:
+  EndFields:
   - {fileID: 2865665235339653368}
   - {fileID: 1891547570}
   - {fileID: 227488861}
   - {fileID: 1020656954}
-  spawnField: {fileID: 87317332}
-  piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
+  SpawnField: {fileID: 87317332}
+  _piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   PlayerMaterial: {fileID: 2100000, guid: 805a75ce0463e834bb02a977a25d277d, type: 2}
   CamTransform: {fileID: 311376835}
   HasMoved: 0
   HasThrownDice: 0
-  moveablePieces: []
 --- !u!4 &1516626682
 Transform:
   m_ObjectHideFlags: 0
@@ -5713,6 +5854,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 825701501}
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
@@ -5981,6 +6126,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
     - target: {fileID: 416025214248930879, guid: 4e8ddb042794ce644bb425ce8c47bd6a, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 397913965}
+    - target: {fileID: 416025214248930879, guid: 4e8ddb042794ce644bb425ce8c47bd6a, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 397913965}
@@ -6062,6 +6211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1846166166}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -6151,6 +6304,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 2041667369}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -6259,6 +6416,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1312675297}
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1312675297}
@@ -6352,6 +6513,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1866157125}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 1866157125}
@@ -6441,9 +6606,17 @@ PrefabInstance:
       value: EndFieldEntry Black
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: EndField
+      value: 
+      objectReference: {fileID: 1119592196}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: endField
       value: 
       objectReference: {fileID: 1119592196}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 870323416}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -6528,6 +6701,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 850396390}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -6639,6 +6816,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 2013436061}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -6756,24 +6937,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0f9d1ed41be8c42b1e21cb511650d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBot: 1
-  boxFields:
+  IsBot: 1
+  BoxFields:
   - {fileID: 1397326312}
   - {fileID: 829990026}
   - {fileID: 1424880806}
   - {fileID: 1898473804}
-  endFields:
+  EndFields:
   - {fileID: 1435953315}
   - {fileID: 1386634280}
   - {fileID: 2103293388}
   - {fileID: 734523175}
-  spawnField: {fileID: 2084633691}
-  piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
+  SpawnField: {fileID: 2084633691}
+  _piecePrefab: {fileID: 3738553350043516189, guid: 2eb5276baf3c1294c8fc65bf8fffcb89, type: 3}
   PlayerMaterial: {fileID: 2100000, guid: dcb8a00ff4d660b49a76ba7f8c16deba, type: 2}
   CamTransform: {fileID: 27052728}
   HasMoved: 0
   HasThrownDice: 0
-  moveablePieces: []
 --- !u!4 &1937351354
 Transform:
   m_ObjectHideFlags: 0
@@ -6884,6 +7064,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 825701501}
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 825701501}
@@ -6976,6 +7160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1819147689}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -7104,6 +7292,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 2111806902}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 2111806902}
@@ -7188,6 +7380,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1937351353}
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
@@ -7297,6 +7493,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 99118971}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 99118971}
@@ -7369,6 +7569,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1312883642}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -7459,9 +7663,17 @@ PrefabInstance:
       value: EndFieldEntry Yellow
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: EndField
+      value: 
+      objectReference: {fileID: 2865665235339653368}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: endField
       value: 
       objectReference: {fileID: 2865665235339653368}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 87317332}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -7552,6 +7764,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1832254565}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 1832254565}
@@ -7641,9 +7857,17 @@ PrefabInstance:
       value: EndFieldEntry Red
       objectReference: {fileID: 0}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: EndField
+      value: 
+      objectReference: {fileID: 1254539626}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: endField
       value: 
       objectReference: {fileID: 1254539626}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1948236887083078505}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
@@ -7830,6 +8054,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
     - target: {fileID: 416025214248930879, guid: 4e8ddb042794ce644bb425ce8c47bd6a, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 5271504650997803076}
+    - target: {fileID: 416025214248930879, guid: 4e8ddb042794ce644bb425ce8c47bd6a, type: 3}
       propertyPath: nextField
       value: 
       objectReference: {fileID: 5271504650997803076}
@@ -7918,6 +8146,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1264266389}
     m_Modifications:
+    - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1516626681}
     - target: {fileID: 1807318850943408559, guid: 7233409f96bf12c4f97cfc34a58de1a8, type: 3}
       propertyPath: player
       value: 
@@ -8015,6 +8247,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
+      propertyPath: NextField
+      value: 
+      objectReference: {fileID: 1666623437}
     - target: {fileID: 7033564839671188190, guid: 9b0bc1aa93161f74f9db68a1a16c78b4, type: 3}
       propertyPath: nextField
       value: 
