@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         if (_MoveablePieces.Count == 0) _MoveablePieces = Pieces.FindAll(piece => piece.Checks.CanMove(_gen.lastNumber));
     }
 
-    public void StartTurn() { 
+    public void StartTurn() {
         if (IsBot) StartCoroutine(BotTurn());
         else StartCoroutine(Turn());
     }

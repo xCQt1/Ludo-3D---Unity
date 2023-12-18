@@ -18,6 +18,7 @@ public class Field : MonoBehaviour
     void Start()
     {
         if (!NextField) Debug.LogError("Field not connected to next field (nextField is null)");
+        if (NextField == this) Debug.LogError("NextField is identical to this field");
     }
 
     public bool PlacePiece(Piece piece) {   // places a given piece on this field

@@ -4,7 +4,5 @@ using UnityEngine;
 
 public class BoxField : Field
 {
-    void Start() {}
-
-    void Update() {}
+    void Start() {} // overrides field.cs's Start method, so that no Error is thrown in case of nexField being empty
 }
