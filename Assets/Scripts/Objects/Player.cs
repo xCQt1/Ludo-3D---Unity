@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
         _gen = NumberGenerator.Instance;
     }
 
+    // Creates the four pieces for the player from the piece prefab
     protected void InstantiatePieces() {    // instantiates 4 pieces
         foreach (BoxField field in BoxFields) {
             GameObject go = Instantiate(_piecePrefab, position: transform.position, rotation: Quaternion.identity, parent: transform);
@@ -46,7 +47,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void UpdateMoveablePieces() {    // redetermines the moveable pieces in the current turn for this player
+    // Updates the list with the pieces, that are moveable
+    public void UpdateMoveablePieces() {
         if (_gen.lastNumber == 0) return;
 
         if (HasMoved) {
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour
         if (_MoveablePieces.Count == 0) _MoveablePieces = Pieces.FindAll(piece => piece.Checks.CanMove(_gen.lastNumber));
     }
 
+    // Starts this player's turn
     public void StartTurn() {
         if (IsBot) StartCoroutine(BotTurn());
         else StartCoroutine(Turn());
@@ -117,22 +120,45 @@ public class Player : MonoBehaviour
     private Piece DetermineBestPieceToMove() {  // determines the best piece to move
         UpdateMoveablePieces();
         if (_MoveablePieces.Count == 0) return null;
-        Piece bestPiece = BestPieceToMove(_MoveablePieces);
-        return bestPiece;
+        else if (_MoveablePieces.Count == 1 || _MoveablePieces.All(piece => piece.Checks.IsInBox())) return _MoveablePieces[0];
+        return BestPieceToMove(_MoveablePieces);
     }
 
     private Piece BestPieceToMove(List<Piece> pieces) { // actually determines the best piece to move
+        pieces = pieces.OrderBy(piece => piece.FieldsMoved).ToList();
         List<Piece> temp = pieces;
-        if (pieces.Count != 1) {
-            temp = pieces.FindAll(piece => piece.Checks.CanEnterEndFields(_gen.lastNumber));
-            if (temp.Count != 1) temp = pieces; else goto x;
 
-            temp = pieces.FindAll(piece => piece.Checks.CanAdvanceInEndFields(_gen.lastNumber));
-            if (temp.Count != 1) temp = pieces; else goto x;
-        }
+        // Checks whether a specific condition applies to a single piece
+        temp = pieces.FindAll(piece => piece.Checks.CanEnterEndFields(_gen.lastNumber) && piece.Checks.CanBeCaptured());
+        if (temp.Count != 1) temp = pieces; else goto x;
+
+        temp = pieces.FindAll(piece => piece.Checks.CanEscapeCapture(0) && !piece.Checks.CanEscapeCapture(_gen.lastNumber) && piece.Mode == PieceMode.DEFENSIVE);
+        if (temp.Count != 1) temp = pieces; else goto x;
+
+        temp = pieces.FindAll(piece => !piece.Checks.IsInBox() && !piece.Checks.IsInEndFields() && piece.GetPrevField(1)?.GetCurrentPiece().player != piece.player);    // Filter out all pieces that are standing directly infront of a piece
+        temp.ForEach(piece => pieces.Remove(piece));
+        temp = pieces;
+
+        temp = pieces.FindAll(piece => piece._CurrentField is SpawnField && piece.Mode == PieceMode.DEFENSIVE);
+        if (temp.Count != 1) temp = pieces; else goto x;
+
+        temp = pieces.FindAll(piece => piece.Checks.CanEnterEndFields(_gen.lastNumber));
+        if (temp.Count != 1) temp = pieces; else goto x;
+
+        temp = pieces.FindAll(piece => piece.Checks.CanAdvanceInEndFields(_gen.lastNumber));
+        if (temp.Count != 1) temp = pieces; else goto x;
+
+        temp = pieces.FindAll(piece => piece.Mode == PieceMode.DEFENSIVE && _gen.lastNumber > 3);
+        if (temp.Count != 1) temp = pieces; else goto x;
+
+        /* Template:
+
+        temp = pieces.FindAll(piece => );
+        if (temp.Count != 1) temp = pieces; else goto x;
+        */
 
         x:
-        return temp[0];
+        return temp[new System.Random().Next(0,temp.Count-1)];
     }
 
     public void Reset() {   // returns all pieces to box by capturing them

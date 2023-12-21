@@ -30,7 +30,7 @@ public class GameHandler : MonoBehaviour
         Instance = this;
     }
 
-    public void StartGame(Difficulty difficulty = Difficulty.NORMAL) {
+    public void StartGame(Difficulty difficulty = Difficulty.NORMAL) {  // Starts the game
         SceneManager.UnloadSceneAsync("MenuScene");
         this.Difficulty = difficulty;
         ResetGame();
@@ -44,7 +44,7 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-    public void PlacePiecesRandomly() {
+    public void PlacePiecesRandomly() {     // randomizes pieces by moving each a random amount of fields
         foreach(Player player in Players) {
             player.Reset();
             foreach(Piece piece in player.Pieces) {
@@ -79,16 +79,16 @@ public class GameHandler : MonoBehaviour
 
     }
 
-    private void HandleGameOver(Player player) {
+    private void HandleGameOver(Player player) {    // is called when game is over
         Debug.Log($"Game Over! {player.name} hat gewonnen!");
         Application.Quit();
     }
 
     private void MoveSpotlightTo(Vector3 position) {    // moves the turn-indicating spotlight to a certain player
-        StartCoroutine(moveSpotlight(position));
+        StartCoroutine(MoveSpotlight(position));
     }
 
-    private IEnumerator moveSpotlight(Vector3 targetPosition) {  // coroutine for MoveSpotlightTo()
+    private IEnumerator MoveSpotlight(Vector3 targetPosition) {  // coroutine for MoveSpotlightTo(), moves spotlight to specific position
         InAnimation = true;
 
         float timeElapsed = 0f;

@@ -22,7 +22,8 @@ public class MenuCameraOrbitHandler : MonoBehaviour
         StartCoroutine(CinematicCycle());
     }
 
-    private IEnumerator CinematicCycle()  {
+    private IEnumerator CinematicCycle()  { // Cycle with Fade, Orbit, Fade and placing the pieces randomly
+        GameHandler.Instance.PlacePiecesRandomly();
         RandomizeCameraSettingsAndPosition();
 
         while (true) {
@@ -32,7 +33,7 @@ public class MenuCameraOrbitHandler : MonoBehaviour
         }
     }
 
-    private IEnumerator ScreenFadeMagic() {
+    private IEnumerator ScreenFadeMagic() {     // fades the screen (or the fade panel) and randomizes camera position and viewing angle as well as piece positions
         float timeElapsed = 0;
         while (timeElapsed < FadeDuration) {
             _panelBackground.color = new Color(r: 0, g: 0, b: 0, a: timeElapsed/FadeDuration);
@@ -41,6 +42,7 @@ public class MenuCameraOrbitHandler : MonoBehaviour
         }
         
         RandomizeCameraSettingsAndPosition();
+        GameHandler.Instance.PlacePiecesRandomly();
         yield return new WaitForSeconds(0.2f);
 
         while (timeElapsed > 0) {
@@ -50,7 +52,7 @@ public class MenuCameraOrbitHandler : MonoBehaviour
         }
     }
 
-    private IEnumerator CameraOrbit() {
+    private IEnumerator CameraOrbit() {     // orbits the camera around the origin (0,0,0)
         float timeElapsed = 0;
         while (timeElapsed < OrbitDuration) {
             transform.RotateAround(Vector3.zero, Vector3.up, RotationDegrees/OrbitDuration * Time.deltaTime);
@@ -60,9 +62,9 @@ public class MenuCameraOrbitHandler : MonoBehaviour
         }
     }
 
-    private void RandomizeCameraSettingsAndPosition() {
-        _camera.fieldOfView = new System.Random().Next(30,90);
+    private void RandomizeCameraSettingsAndPosition() {     // randomizes the camera's position and FOV
         System.Random random = new();
+        _camera.fieldOfView = random.Next(30,90);
         _camera.transform.position = new Vector3(random.Next(3,10), random.Next(3,10), random.Next(3,10));
         _camera.transform.LookAt(Vector3.zero);
         Physics.SyncTransforms();

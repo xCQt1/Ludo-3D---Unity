@@ -45,9 +45,5 @@ public class CameraController : MonoBehaviour
 
         InAnimation = false;
     }
-
-    public void OrbitField() {
-
-    }
     
 }

@@ -6,6 +6,7 @@ public class Field : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] public Field NextField;
+    [HideInInspector] public Field PreviousField {get; private set;}
     [SerializeField] public EndField EndField;
 
     [HideInInspector] private Piece _currentPiece;
@@ -19,6 +20,7 @@ public class Field : MonoBehaviour
     {
         if (!NextField) Debug.LogError("Field not connected to next field (nextField is null)");
         if (NextField == this) Debug.LogError("NextField is identical to this field");
+        NextField.AssignPreviousField(this);
     }
 
     public bool PlacePiece(Piece piece) {   // places a given piece on this field
@@ -35,6 +37,10 @@ public class Field : MonoBehaviour
     }
 
     public void RemoveCurrentPiece() {
-        _currentPiece = null;        
+        _currentPiece = null;
+    }
+
+    public void AssignPreviousField(Field field) {
+        PreviousField = field;
     }
 }

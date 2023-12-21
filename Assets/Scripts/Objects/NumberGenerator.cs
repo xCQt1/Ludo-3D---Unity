@@ -53,7 +53,7 @@ public class NumberGenerator : MouseClickable
         currentNumber.GetComponentInChildren<Renderer>().material = lastPlayer.PlayerMaterial;
     }
 
-    private void DestroyNumber() {
+    private void DestroyNumber() {  // destroys current number gameobject
         Destroy(currentNumber);
         currentNumber = null;
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract public class MouseClickable : MonoBehaviour    // parent class for all clickable gameobjects (currently number generator and pieces)
+abstract public class MouseClickable : MonoBehaviour    // base class for all clickable gameobjects (currently number generator and pieces)
 {
     [HideInInspector] public Outline Outline;
 
